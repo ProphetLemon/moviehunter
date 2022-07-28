@@ -15,15 +15,48 @@
 
     <div class="container">
         <h1> Movie Finder</h1>
-        <form action="/results" method="POST" autocomplete="off">
-            <div class="row">
+        <form action="/results" class="border border-2 rounded p-3" method="POST" autocomplete="off">
+            <div class="row border border-2 rounded p-3">
+                <h2>Criterio principal</h2>
                 <div class="form-group col-6">
                     <label for="titulo">Título</label>
                     <input id="titulo" name="titulo" class="form-control" type="text">
                 </div>
                 <div class="form-group col-6">
                     <label for="genero">Género</label>
-                    <input id="genero" name="genero" class="form-control" type="text">
+                    <select id="genero" name="genero" class="form-select">
+                        <option disabled selected value>-- Selecciona una opción --</option>
+                        <option value="28">Acción</option>
+                        <option value="12">Aventura</option>
+                        <option value="16">Animación</option>
+                        <option value="35">Comedia</option>
+                        <option value="80">Crimen</option>
+                        <option value="99">Documental</option>
+                        <option value="18">Drama</option>
+                        <option value="10751">Familia</option>
+                        <option value="14">Fantasía</option>
+                        <option value="36">Historia</option>
+                        <option value="27">Terror</option>
+                        <option value="10402">Música</option>
+                        <option value="9648">Misterio</option>
+                        <option value="10749">Romance</option>
+                        <option value="878">Ciencia ficción</option>
+                        <option value="10770">Película de TV</option>
+                        <option value="53">Suspense</option>
+                        <option value="10752">Bélica</option>
+                        <option value="37">Western</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row border border-2 rounded p-3 mt-2 mb-2">
+                <h2>Filtros de busqueda</h2>
+                <div class="form-group col-6">
+                    <label for="min_vote">Número de votos mínimo</label>
+                    <input id="min_vote" name="min_vote" class="form-control" type="number">
+                </div>
+                <div class="form-group col-6">
+                    <label for="min_avg">Valoración mínima</label>
+                    <input id="min_avg" min="0" max="10" name="min_avg" class="form-control" type="number">
                 </div>
             </div>
             <input type="submit" class="btn btn-success" value="Enviar">
