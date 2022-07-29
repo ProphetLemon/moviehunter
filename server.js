@@ -8,10 +8,18 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'src')));
-
-
-app.get('/', (req, res) => {
-    res.render('index');
+const { MovieDb } = require('moviedb-promise')
+const moviedb = new MovieDb(process.env.MOVIEDB_API)
+app.get('/', async (req, res) => {
+    var genres = await getGenresByLanguage('es') + await getGenresByLanguage('en') + await getGenresByLanguage('de')
+    var parameters = { language: 'es', sort_by: 'popularity.desc' }
+    var datos = { language: 'es', sort_by: 'popularity.desc', min_vote: 0, min_avg: 0, genres: genres }
+    moviedb.discoverMovie(parameters)
+        .then((resMovie) => {
+            res.render('index', { resMovie: resMovie, datos: datos })
+        })
+        .catch(console.error)
+    return
 });
 
 app.use('/results', resultsRouter)

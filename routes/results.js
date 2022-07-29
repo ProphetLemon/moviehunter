@@ -8,35 +8,56 @@ router.get('/', (req, res) => {
 
 //Wrapper https://github.com/grantholle/moviedb-promise
 
-router.post('/', (req, res) => {
-    console.log(req.body)
-    if (req.body.titulo) {
+router.post('/', async (req, res) => {
+    var genres = await getGenresByLanguage('es') + await getGenresByLanguage('en') + await getGenresByLanguage('de')
+    genres = genres.substring(0, genres.length - 3)
+    var datos = { language: req.body.language, genres: genres }
+    var parameters = { language: req.body.language }
+
+    if (req.body.genre) {
+        parameters["with_genres"] = req.body.genre
+        datos["genre"] = req.body.genre
+    }
+    if (req.body.sort_by) {
+        parameters["sort_by"] = req.body.sort_by
+        datos["sort_by"] = req.body.sort_by
+    }
+
+    parameters["vote_count.gte"] = req.body.min_vote ? req.body.min_vote : 0
+    datos["min_vote"] = req.body.min_vote ? req.body.min_vote : 0
+
+    parameters["vote_average.gte"] = req.body.min_avg ? req.body.min_avg : 0
+    datos["min_avg"] = req.body.min_avg ? req.body.min_avg : 0
+
+
+    if (req.body.title) {
+        parameters['query'] = req.body.title
+        datos['title'] = req.body.title
         moviedb
-            .searchMovie({ query: req.body.titulo, language: 'es' })
+            .searchMovie(parameters)
             .then((resMovie) => {
-                console.log(resMovie)
-                res.render('index')
+                res.render('index', { resMovie: resMovie, datos: datos })
             })
             .catch(console.error)
-    }
-    var parameters = { language: 'es' }
-    if (req.body.genero) {
-        parameters["with_genres"] = req.body.genero
-    }
-    if (req.body.min_vote) {
-        parameters["vote_count.gte"] = req.body.min_vote
-    }
-    if (req.body.min_avg) {
-        parameters["vote_average.gte"] = req.body.min_avg
+        return
     }
     moviedb.discoverMovie(parameters)
         .then((resMovie) => {
-            console.log(resMovie)
-            res.render('index')
+            console.log(console.log(parameters))
+            res.render('index', { resMovie: resMovie, datos: datos })
         })
         .catch(console.error)
-
-
+    return
 })
+
+
+global.getGenresByLanguage = async function (language) {
+    var genres = await (await moviedb.genreMovieList({ language: language })).genres
+    var final = ""
+    for (let i = 0; i < genres.length; i++) {
+        final += `${genres[i].id}-${genres[i].name},`
+    }
+    return final.substring(0, final.length - 1) + "COI"
+}
 
 module.exports = router

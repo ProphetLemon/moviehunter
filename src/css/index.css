@@ -1,0 +1,43 @@
+@media only screen and (min-width: 576px) {
+    img {
+        transition: transform 0.25s ease;
+        z-index: 9999999999999;
+        position: relative;
+    }
+
+    img:hover {
+        -webkit-transform: scale(1.5);
+        /* or some other value */
+        transform: scale(1.5);
+    }
+
+    .accordion-item {
+        position: relative;
+    }
+
+}
+
+@media only screen and (min-width: 992px) {
+    img {
+        transition: transform 0.25s ease;
+        z-index: 9999999999999;
+        position: relative;
+    }
+
+    img:hover {
+        -webkit-transform: scale(1.5);
+        /* or some other value */
+        transform: scale(1.5);
+    }
+
+    .accordion-item {
+        position: relative;
+    }
+
+}
+
+
+div {
+    text-align: justify;
+    text-justify: inter-word;
+}
