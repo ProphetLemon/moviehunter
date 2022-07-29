@@ -17,6 +17,13 @@
 
 }
 
+@media only screen and (max-width: 460px) {
+    .row {
+        display: block;
+    }
+
+}
+
 @media only screen and (min-width: 992px) {
     img {
         transition: transform 0.25s ease;
