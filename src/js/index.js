@@ -41,6 +41,7 @@ function changeLanguage(e) {
         return
     }
     var separator = 0
+    var genreValue = document.getElementById("genreValue").value
     switch ($("#language")[0].value) {
         case 'es':
             separator = 0
@@ -59,12 +60,6 @@ function changeLanguage(e) {
                     value: '',
                     text: 'Cualquiera'
                 }));
-            $.each(document.getElementById("genres").value.split("COI")[separator].split(","), function (i, item) {
-                $('#genre').append($('<option>', {
-                    value: item.split("-")[0],
-                    text: item.split("-")[1]
-                }));
-            })
             $("#sort_by option")[0].text = 'Popularidad'
             $("#sort_by option")[1].text = 'Fecha Lanzamiento'
             $("#sort_by option")[2].text = 'Nota media'
@@ -90,12 +85,6 @@ function changeLanguage(e) {
                     value: '',
                     text: 'Whichever'
                 }));
-            $.each(document.getElementById("genres").value.split("COI")[separator].split(","), function (i, item) {
-                $('#genre').append($('<option>', {
-                    value: item.split("-")[0],
-                    text: item.split("-")[1]
-                }));
-            })
             $("#sort_by option")[0].text = 'Popularity'
             $("#sort_by option")[1].text = 'Release date'
             $("#sort_by option")[2].text = 'Average rete'
@@ -121,12 +110,7 @@ function changeLanguage(e) {
                     value: '',
                     text: 'Welche'
                 }));
-            $.each(document.getElementById("genres").value.split("COI")[separator].split(","), function (i, item) {
-                $('#genre').append($('<option>', {
-                    value: item.split("-")[0],
-                    text: item.split("-")[1]
-                }));
-            })
+
             $("#sort_by option")[0].text = 'Popularität'
             $("#sort_by option")[1].text = 'Veröffentlichungsdatum'
             $("#sort_by option")[2].text = 'Durchschnittsnote'
@@ -136,5 +120,20 @@ function changeLanguage(e) {
             }
             break;
     }
+    $.each(document.getElementById("genres").value.split("COI")[separator].split(","), function (i, item) {
+        if (genreValue == item.split("-")[0]) {
+            $('#genre').append($('<option>', {
+                value: item.split("-")[0],
+                text: item.split("-")[1],
+                selected: 'selected'
+            }));
+        } else {
+            $('#genre').append($('<option>', {
+                value: item.split("-")[0],
+                text: item.split("-")[1]
+            }));
+        }
+
+    })
 
 }

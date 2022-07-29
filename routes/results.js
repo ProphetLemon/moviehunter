@@ -43,7 +43,6 @@ router.post('/', async (req, res) => {
     }
     moviedb.discoverMovie(parameters)
         .then((resMovie) => {
-            console.log(console.log(parameters))
             res.render('index', { resMovie: resMovie, datos: datos })
         })
         .catch(console.error)
