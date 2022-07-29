@@ -87,7 +87,7 @@ function changeLanguage(e) {
                 }));
             $("#sort_by option")[0].text = 'Popularity'
             $("#sort_by option")[1].text = 'Release date'
-            $("#sort_by option")[2].text = 'Average rete'
+            $("#sort_by option")[2].text = 'Average rate'
             $("#sort_by option")[3].text = 'Number of votes'
             if ($("#results").length == 1) {
                 $("#results")[0].innerText = 'Results'
