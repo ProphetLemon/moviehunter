@@ -1,11 +1,11 @@
 @media only screen and (min-width: 576px) {
-    img {
+    div img {
         transition: transform 0.25s ease;
         z-index: 9999999999999;
         position: relative;
     }
 
-    img:hover {
+    div img:hover {
         -webkit-transform: scale(1.5);
         /* or some other value */
         transform: scale(1.5);
@@ -17,6 +17,46 @@
 
 }
 
+
+.light {
+    background-color: white !important;
+    color: black !important;
+}
+
+.dark {
+    background-color: #2b2c35 !important;
+    color: rgb(204, 204, 204) !important;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer {
+    text-align: center;
+}
+
+footer img {
+    width: 10em;
+}
+
+@font-face {
+    font-family: AldotheApache;
+    src: url('/fonts/AldotheApache.ttf');
+}
+
+.titulo {
+    font-family: AldotheApache, sans-serif;
+    font-size: 6em;
+    text-align: center;
+}
+
 @media only screen and (max-width: 460px) {
     .row {
         display: block;
@@ -25,13 +65,13 @@
 }
 
 @media only screen and (min-width: 992px) {
-    img {
+    div img {
         transition: transform 0.25s ease;
         z-index: 9999999999999;
         position: relative;
     }
 
-    img:hover {
+    div img:hover {
         -webkit-transform: scale(1.5);
         /* or some other value */
         transform: scale(1.5);

@@ -1,6 +1,48 @@
 document.getElementById("language").addEventListener("change", changeLanguage);
 changeLanguage()
 
+
+function loadColors() {
+    var darkMode = document.getElementById("darkMode").checked
+    if (darkMode == true) {
+        changeColors(document.getElementById("darkModeButton"))
+    }
+}
+loadColors()
+function changeColors(e) {
+    if (e.value == '🌙') {
+        document.getElementById("darkMode").checked = true
+        $.each($(".accordion-button"), function (i, item) {
+            $(item).addClass("dark")
+            $(item).removeClass("light")
+        })
+        $.each($(".accordion-body"), function (i, item) {
+            $(item).addClass("dark")
+            $(item).removeClass("light")
+        })
+        e.value = '☀'
+        $("body").addClass("dark")
+        $("body").removeClass("light")
+        $(e).removeClass("btn-dark")
+        $(e).addClass("btn-warning")
+    } else if (e.value == '☀') {
+        document.getElementById("darkMode").checked = false
+        $.each($(".accordion-button"), function (i, item) {
+            $(item).addClass("light")
+            $(item).removeClass("dark")
+        })
+        $.each($(".accordion-body"), function (i, item) {
+            $(item).addClass("light")
+            $(item).removeClass("dark")
+        })
+        e.value = '🌙'
+        $("body").addClass("light")
+        $("body").removeClass("dark")
+        $(e).removeClass("btn-warning")
+        $(e).addClass("btn-dark")
+    }
+}
+
 function changeGenreNumberToText() {
     var idsMovies = $(".genres_ids")
     var separator = 0
