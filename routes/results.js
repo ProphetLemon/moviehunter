@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     var genres = await getGenresByLanguage('es') + await getGenresByLanguage('en') + await getGenresByLanguage('de')
     genres = genres.substring(0, genres.length - 3)
-    var datos = { language: req.body.language, genres: genres, darkMode: req.body.darkMode }
+    var datos = { language: req.body.language, genres: genres, darkMode: req.body.darkMode ? req.body.darkMode : 'off' }
     var parameters = { language: req.body.language }
 
     if (req.body.genre) {
