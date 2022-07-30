@@ -3,7 +3,7 @@ const router = express.Router()
 const { MovieDb } = require('moviedb-promise')
 const moviedb = new MovieDb(process.env.MOVIEDB_API)
 router.get('/', (req, res) => {
-    res.send("Aqui saldrán resultados")
+    res.redirect('/')
 })
 
 //Wrapper https://github.com/grantholle/moviedb-promise
