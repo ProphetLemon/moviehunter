@@ -108,7 +108,7 @@ function changeLanguage(e) {
                 .find('option')
                 .remove().end().append($('<option>', {
                     value: '',
-                    text: 'Welche'
+                    text: 'Alle'
                 }));
 
             $("#sort_by option")[0].text = 'Popularität'
