@@ -11,9 +11,10 @@ app.use(express.static(path.join(__dirname, 'src')));
 const { MovieDb } = require('moviedb-promise')
 const moviedb = new MovieDb(process.env.MOVIEDB_API)
 app.get('/', async (req, res) => {
-    var genres = await getGenresByLanguage('es') + await getGenresByLanguage('en') + await getGenresByLanguage('de')
+    var genres = await getGenresByLanguage('es', 'movie') + await getGenresByLanguage('en', 'movie') + await getGenresByLanguage('de', 'movie')
     var parameters = { language: 'es', sort_by: 'popularity.desc' }
-    var datos = { language: 'es', sort_by: 'popularity.desc', min_vote: 0, min_avg: 0, genres: genres }
+    genres = genres.substring(0, genres.length - 3)
+    var datos = { language: 'es', sort_by: 'popularity.desc', type: 'movie', min_vote: 0, min_avg: 0, genres: genres }
     moviedb.discoverMovie(parameters)
         .then((resMovie) => {
             res.render('index', { resMovie: resMovie, datos: datos })

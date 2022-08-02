@@ -55,6 +55,16 @@
                     </select>
                     <input type="text" value="<%=datos.genre%>" id="genreValue" class="d-none">
                 </div>
+                <div class="form-group col-md-12 col-lg-4">
+                    <label for="type">Tipo</label>
+                    <select onchange="changeType(this)" id="type" name="type" class="form-select">
+                        <option value="movie">Películas</option>
+                        <option value="tv">Series</option>
+                    </select>
+                    <% if (datos.type){ %>
+                        <script>document.getElementById("type").value = "<%=datos.type %>"</script>
+                        <%} %>
+                </div>
             </div>
             <div class="row p-3 mt-2 mb-2">
                 <h2 id="filter">Filtros de busqueda</h2>
@@ -94,7 +104,9 @@
                                 <button class="accordion-button dark collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapse<%=result.id %>" aria-expanded="false"
                                     aria-controls="collapse<%=result.id %>">
-                                    <%=result.title%> (<%=result.release_date.split("-")[0]%>)<br>
+                                    <%=result.title?result.title:result.name%> (
+                                        <%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>
+                                            )<br>
                                             <%=result.vote_count%> -
                                                 <%=result.vote_average%>⭐
                                 </button>

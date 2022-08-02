@@ -9,11 +9,11 @@ router.get('/', (req, res) => {
 //Wrapper https://github.com/grantholle/moviedb-promise
 
 router.post('/', async (req, res) => {
-    var genres = await getGenresByLanguage('es') + await getGenresByLanguage('en') + await getGenresByLanguage('de')
-    genres = genres.substring(0, genres.length - 3)
-    var datos = { language: req.body.language, genres: genres, darkMode: req.body.darkMode ? req.body.darkMode : 'off' }
+    var datos = { language: req.body.language, type: req.body.type, genres: genres, darkMode: req.body.darkMode ? req.body.darkMode : 'off' }
     var parameters = { language: req.body.language }
-
+    var genres = await getGenresByLanguage('es', datos['type']) + await getGenresByLanguage('en', datos['type']) + await getGenresByLanguage('de', datos['type'])
+    genres = genres.substring(0, genres.length - 3)
+    datos['genres'] = genres
     if (req.body.genre) {
         parameters["with_genres"] = req.body.genre
         datos["genre"] = req.body.genre
@@ -33,26 +33,49 @@ router.post('/', async (req, res) => {
     if (req.body.title) {
         parameters['query'] = req.body.title
         datos['title'] = req.body.title
-        moviedb
-            .searchMovie(parameters)
-            .then((resMovie) => {
-                res.render('index', { resMovie: resMovie, datos: datos })
-            })
-            .catch(console.error)
+        if (datos['type'] == 'movie') {
+            moviedb
+                .searchMovie(parameters)
+                .then((resMovie) => {
+                    res.render('index', { resMovie: resMovie, datos: datos })
+                })
+                .catch(console.error)
+        } else if (datos['type'] == 'tv') {
+            moviedb
+                .searchTv(parameters)
+                .then((resMovie) => {
+                    res.render('index', { resMovie: resMovie, datos: datos })
+                })
+                .catch(console.error)
+        }
     } else {
-        moviedb.discoverMovie(parameters)
-            .then((resMovie) => {
-                res.render('index', { resMovie: resMovie, datos: datos })
-            })
-            .catch(console.error)
+        if (datos['type'] == 'movie') {
+            moviedb.discoverMovie(parameters)
+                .then((resMovie) => {
+                    res.render('index', { resMovie: resMovie, datos: datos })
+                })
+                .catch(console.error)
+        } else if (datos['type'] == 'tv') {
+            moviedb.discoverTv(parameters)
+                .then((resMovie) => {
+                    res.render('index', { resMovie: resMovie, datos: datos })
+                })
+                .catch(console.error)
+        }
+
     }
 
     return
 })
 
 
-global.getGenresByLanguage = async function (language) {
-    var genres = await (await moviedb.genreMovieList({ language: language })).genres
+global.getGenresByLanguage = async function (language, type) {
+    if (type == 'movie') {
+        var genres = await (await moviedb.genreMovieList({ language: language })).genres
+    } else if (type == 'tv') {
+        var genres = await (await moviedb.genreTvList({ language: language })).genres
+    }
+
     var final = ""
     for (let i = 0; i < genres.length; i++) {
         final += `${genres[i].id}-${genres[i].name},`
