@@ -17,6 +17,9 @@
 
 }
 
+#icons {
+    display: flex;
+}
 
 .light {
     background-color: white !important;

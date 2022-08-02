@@ -39,13 +39,14 @@ router.post('/', async (req, res) => {
                 res.render('index', { resMovie: resMovie, datos: datos })
             })
             .catch(console.error)
-        return
+    } else {
+        moviedb.discoverMovie(parameters)
+            .then((resMovie) => {
+                res.render('index', { resMovie: resMovie, datos: datos })
+            })
+            .catch(console.error)
     }
-    moviedb.discoverMovie(parameters)
-        .then((resMovie) => {
-            res.render('index', { resMovie: resMovie, datos: datos })
-        })
-        .catch(console.error)
+
     return
 })
 
