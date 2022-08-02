@@ -104,9 +104,11 @@
                                 <button class="accordion-button dark collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapse<%=result.id %>" aria-expanded="false"
                                     aria-controls="collapse<%=result.id %>">
-                                    <%=result.title?result.title:result.name%> (
+                                    <%=result.title?result.title:result.name%>
+                                        (
                                         <%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>
-                                            )<br>
+                                            )
+                                            <br>
                                             <%=result.vote_count%> -
                                                 <%=result.vote_average%>⭐
                                 </button>
