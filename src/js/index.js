@@ -4,6 +4,7 @@ changeLanguage()
 function changeType(e) {
     var valor = e.value
     $("form")[0].reset()
+    $("#genre")[0].value = ''
     $("#type")[0].value = valor
     $("form")[0].submit()
 }
