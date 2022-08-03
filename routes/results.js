@@ -16,18 +16,18 @@ router.post('/', async (req, res) => {
     datos['genres'] = genres
     if (req.body.genre) {
         parameters["with_genres"] = req.body.genre
-        datos["genre"] = req.body.genre
+        datos["genre"] = req.body.title ? '' : req.body.genre
     }
     if (req.body.sort_by) {
         parameters["sort_by"] = req.body.sort_by
-        datos["sort_by"] = req.body.sort_by
+        datos["sort_by"] = req.body.title ? '' : req.body.sort_by
     }
 
     parameters["vote_count.gte"] = req.body.min_vote ? req.body.min_vote : 0
-    datos["min_vote"] = req.body.min_vote ? req.body.min_vote : 0
+    datos["min_vote"] = req.body.title ? 0 : (req.body.min_vote ? req.body.min_vote : 0)
 
     parameters["vote_average.gte"] = req.body.min_avg ? req.body.min_avg : 0
-    datos["min_avg"] = req.body.min_avg ? req.body.min_avg : 0
+    datos["min_avg"] = req.body.title ? 0 : (req.body.min_avg ? req.body.min_avg : 0)
 
 
     if (req.body.title) {
@@ -61,7 +61,6 @@ router.post('/', async (req, res) => {
             moviedb.discoverTv(parameters)
                 .then(async (resMovie) => {
                     await whereToWatch(datos.language, datos.type, resMovie)
-                    console.log(resMovie.results[0])
                     res.render('index', { resMovie: resMovie, datos: datos })
                 })
                 .catch(console.error)
