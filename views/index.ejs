@@ -218,6 +218,22 @@
             <footer class="m-2">
                 <a href="https://twitter.com/profetalimon">
                     Author: Diego Vidal del Rosal</a>
+                <div id="donate-button-container" class="mb-3">
+                    <div id="donate-button"></div>
+                    <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+                    <script>
+                        PayPal.Donation.Button({
+                            env: 'production',
+                            hosted_button_id: '4N6A864ZRPSDA',
+                            image: {
+                                src: 'https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donateCC_LG.gif',
+                                alt: 'Botón Donar con PayPal',
+                                title: 'PayPal - The safer, easier way to pay online!',
+                            }
+                        }).render('#donate-button');
+                    </script>
+                </div>
+
                 <br>
                 <a href="https://www.themoviedb.org"> This website uses the API of The Movie Database
                     <img class="img-thumbnail img-fluid rounded"

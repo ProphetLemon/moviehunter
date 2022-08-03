@@ -49,6 +49,10 @@ footer img {
     width: 10em;
 }
 
+#donate-button-container {
+    display: inline-block;
+}
+
 @font-face {
     font-family: AldotheApache;
     src: url('/fonts/AldotheApache.ttf');
