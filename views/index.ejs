@@ -47,7 +47,7 @@
                 <h2 id="basic_data">Datos básicos</h2>
                 <div class="form-group col-md-12 col-lg-4">
                     <label for="title">Título</label>
-                    <input id="title" name="title" class="form-control" type="text" value="<%=datos.title%>">
+                    <input id="title" name="title" class="form-control" type="text">
                 </div>
                 <div class="form-group col-md-12 col-lg-4">
                     <label for="genre">Género</label>
@@ -106,9 +106,7 @@
                                     aria-controls="collapse<%=result.id %>">
                                     <%=result.title?result.title:result.name%>
                                         <%if(result.release_date||result.first_air_date){%>
-                                            (
-                                            <%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>
-                                                )
+                                            (<%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>)
                                                 <%}%>
                                                     <br>
                                                     <%=result.vote_count%> -
