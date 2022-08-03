@@ -16,7 +16,8 @@ app.get('/', async (req, res) => {
     genres = genres.substring(0, genres.length - 3)
     var datos = { language: 'es', sort_by: 'popularity.desc', type: 'movie', min_vote: 0, min_avg: 0, genres: genres }
     moviedb.discoverMovie(parameters)
-        .then((resMovie) => {
+        .then(async (resMovie) => {
+            await whereToWatch('es', 'movie', resMovie)
             res.render('index', { resMovie: resMovie, datos: datos })
         })
         .catch(console.error)

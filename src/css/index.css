@@ -1,11 +1,11 @@
 @media only screen and (min-width: 576px) {
-    div img {
+    .poster {
         transition: transform 0.25s ease;
         z-index: 9999999999999;
         position: relative;
     }
 
-    div img:hover {
+    .poster:hover {
         -webkit-transform: scale(1.5);
         /* or some other value */
         transform: scale(1.5);
@@ -54,6 +54,10 @@ footer img {
     src: url('/fonts/AldotheApache.ttf');
 }
 
+.watch-provider {
+    width: 4em;
+}
+
 .titulo {
     font-family: AldotheApache, sans-serif;
     font-size: 6em;
@@ -71,13 +75,13 @@ footer img {
 }
 
 @media only screen and (min-width: 992px) {
-    div img {
+    .poster {
         transition: transform 0.25s ease;
         z-index: 9999999999999;
         position: relative;
     }
 
-    div img:hover {
+    .poster:hover {
         -webkit-transform: scale(1.5);
         /* or some other value */
         transform: scale(1.5);

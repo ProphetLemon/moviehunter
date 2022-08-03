@@ -106,7 +106,9 @@
                                     aria-controls="collapse<%=result.id %>">
                                     <%=result.title?result.title:result.name%>
                                         <%if(result.release_date||result.first_air_date){%>
-                                            (<%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>)
+                                            (
+                                            <%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>
+                                                )
                                                 <%}%>
                                                     <br>
                                                     <%=result.vote_count%> -
@@ -125,12 +127,74 @@
                                                 <%=result.genre_ids%>
                                             </h6>
                                             <%=result.overview%>
+                                                <%if(result.watchProviders){%>
+
+                                                    <h5 class="mt-2">Donde ver</h5>
+                                                    <%if(result.watchProviders &&result.watchProviders.flatrate ){%>
+                                                        <h6 id="suscriptionText">
+                                                            Suscripción</h6>
+                                                        <div class="row">
+                                                            <%result.watchProviders.flatrate.forEach(provider=>{%>
+                                                                <img class="watch-provider"
+                                                                    src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>">
+                                                                <%})%>
+                                                        </div>
+
+                                                        <%}%>
+                                                            <%if(result.watchProviders &&result.watchProviders.rent ){%>
+                                                                <h6 id="rentText">
+                                                                    Alquilar</h6>
+                                                                <div class="row">
+                                                                    <%result.watchProviders.rent.forEach(provider=>
+                                                                        {%>
+                                                                        <img class="watch-provider"
+                                                                            src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>">
+                                                                        <%})%>
+                                                                </div>
+
+                                                                <%}%>
+                                                                    <%if(result.watchProviders
+                                                                        &&result.watchProviders.buy ){%>
+                                                                        <h6 id="buyText">
+                                                                            Comprar</h6>
+                                                                        <div class="row">
+                                                                            <%result.watchProviders.buy.forEach(provider=>
+                                                                                {%>
+                                                                                <img class="watch-provider"
+                                                                                    src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>">
+                                                                                <%})%>
+                                                                        </div>
+
+                                                                        <%}%>
+
+                                                                            <%if(result.watchProviders
+                                                                                &&result.watchProviders.free ){%>
+                                                                                <h6 id="freeText">
+                                                                                    Gratis</h6>
+                                                                                <div class="row">
+                                                                                    <%result.watchProviders.free.forEach(provider=>
+                                                                                        {%>
+                                                                                        <img class="watch-provider"
+                                                                                            src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>">
+                                                                                        <%})%>
+                                                                                </div>
+
+                                                                                <%}%>
+
+
+                                                                                    <%}%>
+
+
                                         </div>
                                         <div class="col-lg-3 col-md-6 col-sm-5">
-                                            <img class="img-thumbnail img-fluid rounded float-right"
+                                            <img class="poster img-thumbnail img-fluid rounded float-right"
                                                 src="https://image.tmdb.org/t/p/original<%=result.poster_path%>">
                                         </div>
                                     </div>
+
+
+
+
                                 </div>
                             </div>
                         </div>

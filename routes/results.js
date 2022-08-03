@@ -51,13 +51,16 @@ router.post('/', async (req, res) => {
     } else {
         if (datos['type'] == 'movie') {
             moviedb.discoverMovie(parameters)
-                .then((resMovie) => {
+                .then(async (resMovie) => {
+                    await whereToWatch(datos.language, datos.type, resMovie)
                     res.render('index', { resMovie: resMovie, datos: datos })
                 })
                 .catch(console.error)
         } else if (datos['type'] == 'tv') {
             moviedb.discoverTv(parameters)
-                .then((resMovie) => {
+                .then(async (resMovie) => {
+                    await whereToWatch(datos.language, datos.type, resMovie)
+                    console.log(resMovie.results[0])
                     res.render('index', { resMovie: resMovie, datos: datos })
                 })
                 .catch(console.error)
@@ -67,6 +70,28 @@ router.post('/', async (req, res) => {
 
     return
 })
+
+/**
+ * 
+ * @param {string} language 
+ * @param {string} type 
+ * @param {*} resMovie 
+ */
+global.whereToWatch = async function (language, type, resMovie) {
+    language = language == 'en' ? 'us' : language
+    if (type == 'movie') {
+        for (result of resMovie['results']) {
+            var watchProviders = await moviedb.movieWatchProviders(result.id)
+            result.watchProviders = watchProviders.results[language.toUpperCase()]
+        }
+    } else if (type == 'tv') {
+        for (result of resMovie['results']) {
+            var watchProviders = await moviedb.tvWatchProviders(result.id)
+            result.watchProviders = watchProviders.results[language.toUpperCase()]
+        }
+    }
+
+}
 
 
 global.getGenresByLanguage = async function (language, type) {

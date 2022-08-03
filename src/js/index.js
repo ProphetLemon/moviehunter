@@ -123,9 +123,18 @@ function changeLanguage(e) {
             $("#sort_by option")[3].text = 'Número de votos'
             $("#type option")[0].text = 'Películas'
             $("#type option")[1].text = 'Series'
-            if ($("#results").length == 1) {
-                $("#results")[0].innerText = 'Resultados'
-            }
+            /* if ($("#results").length == 1) {
+                 $("#results")[0].innerText = 'Resultados'
+             }
+             if ($("#suscriptionText").length !=0) {
+                 $("#suscriptionText")[0].innerText = 'Resultados'
+             }
+             if ($("#buyText").length !=0) {
+                 $("#buyText")[0].innerText = 'Resultados'
+             }
+             if ($("#rentText").length !=0) {
+                 $("#rentText")[0].innerText = 'Resultados'
+             }*/
             break;
         case 'en':
             separator = 1
