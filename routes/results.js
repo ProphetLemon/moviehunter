@@ -35,14 +35,16 @@ router.post('/', async (req, res) => {
         if (datos['type'] == 'movie') {
             moviedb
                 .searchMovie(parameters)
-                .then((resMovie) => {
+                .then(async (resMovie) => {
+                    await whereToWatch(datos.language, datos.type, resMovie)
                     res.render('index', { resMovie: resMovie, datos: datos })
                 })
                 .catch(console.error)
         } else if (datos['type'] == 'tv') {
             moviedb
                 .searchTv(parameters)
-                .then((resMovie) => {
+                .then(async (resMovie) => {
+                    await whereToWatch(datos.language, datos.type, resMovie)
                     res.render('index', { resMovie: resMovie, datos: datos })
                 })
                 .catch(console.error)
