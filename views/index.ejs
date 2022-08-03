@@ -105,12 +105,12 @@
                                     data-bs-target="#collapse<%=result.id %>" aria-expanded="false"
                                     aria-controls="collapse<%=result.id %>">
                                     <%=result.title?result.title:result.name%>
-                                        (
-                                        <%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>
-                                            )
-                                            <br>
-                                            <%=result.vote_count%> -
-                                                <%=result.vote_average%>⭐
+                                        <%if(result.release_date||result.first_air_date){%>
+                                            (<%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>)
+                                                <%}%>
+                                                    <br>
+                                                    <%=result.vote_count%> -
+                                                        <%=result.vote_average%>⭐
                                 </button>
                             </h2>
                             <div id="collapse<%=result.id %>" class="accordion-collapse collapse"
