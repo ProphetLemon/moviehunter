@@ -123,18 +123,21 @@ function changeLanguage(e) {
             $("#sort_by option")[3].text = 'Número de votos'
             $("#type option")[0].text = 'Películas'
             $("#type option")[1].text = 'Series'
-            /* if ($("#results").length == 1) {
-                 $("#results")[0].innerText = 'Resultados'
-             }
-             if ($("#suscriptionText").length !=0) {
-                 $("#suscriptionText")[0].innerText = 'Resultados'
-             }
-             if ($("#buyText").length !=0) {
-                 $("#buyText")[0].innerText = 'Resultados'
-             }
-             if ($("#rentText").length !=0) {
-                 $("#rentText")[0].innerText = 'Resultados'
-             }*/
+            $.each($(".rentText"), function (i, item) {
+                item.innerText = 'Alquilar'
+            })
+            $.each($(".whereText"), function (i, item) {
+                item.innerText = 'Ver ahora'
+            })
+            $.each($(".buyText"), function (i, item) {
+                item.innerText = 'Comprar'
+            })
+            $.each($(".suscriptionText"), function (i, item) {
+                item.innerText = 'Suscripción'
+            })
+            $.each($(".freeText"), function (i, item) {
+                item.innerText = 'Gratis'
+            })
             break;
         case 'en':
             separator = 1
@@ -162,6 +165,21 @@ function changeLanguage(e) {
             if ($("#results").length == 1) {
                 $("#results")[0].innerText = 'Results'
             }
+            $.each($(".rentText"), function (i, item) {
+                item.innerText = 'Rent'
+            })
+            $.each($(".whereText"), function (i, item) {
+                item.innerText = 'See now'
+            })
+            $.each($(".buyText"), function (i, item) {
+                item.innerText = 'Buy'
+            })
+            $.each($(".suscriptionText"), function (i, item) {
+                item.innerText = 'Suscription'
+            })
+            $.each($(".freeText"), function (i, item) {
+                item.innerText = 'Free'
+            })
             break;
         case 'de':
             separator = 2
@@ -190,6 +208,21 @@ function changeLanguage(e) {
             if ($("#results").length == 1) {
                 $("#results")[0].innerText = 'Ergebnisse'
             }
+            $.each($(".rentText"), function (i, item) {
+                item.innerText = 'Miete'
+            })
+            $.each($(".whereText"), function (i, item) {
+                item.innerText = 'Siehe jetzt'
+            })
+            $.each($(".buyText"), function (i, item) {
+                item.innerText = 'Kaufen'
+            })
+            $.each($(".suscriptionText"), function (i, item) {
+                item.innerText = 'Abonnement'
+            })
+            $.each($(".freeText"), function (i, item) {
+                item.innerText = 'Frei'
+            })
             break;
     }
     $("#languages")[0].selectedIndex = separator

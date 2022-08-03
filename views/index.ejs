@@ -129,9 +129,9 @@
                                             <%=result.overview%>
                                                 <%if(result.watchProviders){%>
 
-                                                    <h5 class="mt-2">Donde ver</h5>
+                                                    <h5 class="mt-2 whereText">Donde ver</h5>
                                                     <%if(result.watchProviders &&result.watchProviders.flatrate ){%>
-                                                        <h6 id="suscriptionText">
+                                                        <h6 class="suscriptionText">
                                                             Suscripción</h6>
                                                         <div class="row">
                                                             <%result.watchProviders.flatrate.forEach(provider=>{%>
@@ -142,7 +142,7 @@
 
                                                         <%}%>
                                                             <%if(result.watchProviders &&result.watchProviders.rent ){%>
-                                                                <h6 id="rentText">
+                                                                <h6 class="rentText">
                                                                     Alquilar</h6>
                                                                 <div class="row">
                                                                     <%result.watchProviders.rent.forEach(provider=>
@@ -155,7 +155,7 @@
                                                                 <%}%>
                                                                     <%if(result.watchProviders
                                                                         &&result.watchProviders.buy ){%>
-                                                                        <h6 id="buyText">
+                                                                        <h6 class="buyText">
                                                                             Comprar</h6>
                                                                         <div class="row">
                                                                             <%result.watchProviders.buy.forEach(provider=>
@@ -169,7 +169,7 @@
 
                                                                             <%if(result.watchProviders
                                                                                 &&result.watchProviders.free ){%>
-                                                                                <h6 id="freeText">
+                                                                                <h6 class="freeText">
                                                                                     Gratis</h6>
                                                                                 <div class="row">
                                                                                     <%result.watchProviders.free.forEach(provider=>
