@@ -9,8 +9,8 @@ router.get('/', (req, res) => {
 //Wrapper https://github.com/grantholle/moviedb-promise
 
 router.post('/', async (req, res) => {
-    var datos = { language: req.body.language, type: req.body.type, genres: genres, darkMode: req.body.darkMode ? req.body.darkMode : 'off' }
-    var parameters = { language: req.body.language }
+    var datos = { language: req.body.language, page: req.body.pageNumber, type: req.body.type, genres: genres, darkMode: req.body.darkMode ? req.body.darkMode : 'off' }
+    var parameters = { language: req.body.language, page: req.body.pageNumber }
     var genres = await getGenresByLanguage('es', datos['type']) + await getGenresByLanguage('en', datos['type']) + await getGenresByLanguage('de', datos['type'])
     genres = genres.substring(0, genres.length - 3)
     datos['genres'] = genres

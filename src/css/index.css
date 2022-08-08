@@ -26,6 +26,20 @@
     color: black !important;
 }
 
+.pageDiv {
+    display: flex !important;
+}
+
+.pageText {
+    color: #8ab4f8;
+}
+
+.pageText:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
 .dark {
     background-color: #2b2c35 !important;
     color: rgb(204, 204, 204) !important;
