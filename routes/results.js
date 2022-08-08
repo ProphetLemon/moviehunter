@@ -32,6 +32,7 @@ router.post('/', async (req, res) => {
 
     if (req.body.title) {
         parameters['query'] = req.body.title
+        datos['title'] = req.body.title
         if (datos['type'] == 'movie') {
             moviedb
                 .searchMovie(parameters)

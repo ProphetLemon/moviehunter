@@ -4,6 +4,16 @@ function init() {
     detectMobile()
     changeGenreNumberToText()
     checkPages()
+    addPageControlEvents()
+}
+
+function addPageControlEvents() {
+    $("form .form-control").on('change', function () {
+        $("#pageNumber")[0].value = 1
+    })
+    $("form .form-select").on('change', function () {
+        $("#pageNumber")[0].value = 1
+    })
 }
 
 function resetPage() {
@@ -26,6 +36,11 @@ function checkPages() {
         $("#pageBefore").attr("disabled", "disabled")
         $("#pageBefore").removeClass("btn-primary")
         $("#pageBefore").addClass("btn-secondary")
+    }
+    if ($("#pageNumber")[0].value >= $("#totalPages")[0].value) {
+        $("#pageAfter").attr("disabled", "disabled")
+        $("#pageAfter").removeClass("btn-primary")
+        $("#pageAfter").addClass("btn-secondary")
     }
 }
 
