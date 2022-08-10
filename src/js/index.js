@@ -45,6 +45,7 @@ function checkPages() {
 }
 
 function changeType(e) {
+    $("#pageNumber")[0].value = 1
     var valor = e.value
     $("form")[0].reset()
     $("#genre")[0].value = ''
