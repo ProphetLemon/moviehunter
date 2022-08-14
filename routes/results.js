@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { MovieDb } = require('moviedb-promise')
 const moviedb = new MovieDb(process.env.MOVIEDB_API)
+
 router.get('/', (req, res) => {
     res.redirect('/')
 })
@@ -22,14 +23,10 @@ router.post('/', async (req, res) => {
         parameters["sort_by"] = req.body.sort_by
         datos["sort_by"] = req.body.title ? '' : req.body.sort_by
     }
-
     parameters["vote_count.gte"] = req.body.min_vote ? req.body.min_vote : 0
     datos["min_vote"] = req.body.title ? 0 : (req.body.min_vote ? req.body.min_vote : 0)
-
     parameters["vote_average.gte"] = req.body.min_avg ? req.body.min_avg : 0
     datos["min_avg"] = req.body.title ? 0 : (req.body.min_avg ? req.body.min_avg : 0)
-
-
     if (req.body.title) {
         parameters['query'] = req.body.title
         datos['title'] = req.body.title
@@ -66,9 +63,7 @@ router.post('/', async (req, res) => {
                 })
                 .catch(console.error)
         }
-
     }
-
     return
 })
 
@@ -101,7 +96,6 @@ global.getGenresByLanguage = async function (language, type) {
     } else if (type == 'tv') {
         var genres = await (await moviedb.genreTvList({ language: language })).genres
     }
-
     var final = ""
     for (let i = 0; i < genres.length; i++) {
         final += `${genres[i].id}-${genres[i].name},`

@@ -4,12 +4,26 @@ const app = express();
 const methodOverride = require('method-override');
 var path = require('path');
 const resultsRouter = require('./routes/results')
+const notificationsRouter = require('./routes/notifications')
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'src')));
 const { MovieDb } = require('moviedb-promise')
 const moviedb = new MovieDb(process.env.MOVIEDB_API)
+const mongoose = require('mongoose')
+
+mongoose.connect(process.env.MONGODB_SRV, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("Connected to the DB!");
+}).catch((err) => {
+    console.log(err);
+});
+
+prepareNotifications()
+
 app.get('/', async (req, res) => {
     var genres = await getGenresByLanguage('es', 'movie') + await getGenresByLanguage('en', 'movie') + await getGenresByLanguage('de', 'movie')
     var parameters = { language: 'es', sort_by: 'popularity.desc' }
@@ -23,7 +37,8 @@ app.get('/', async (req, res) => {
         .catch(console.error)
     return
 });
-
 app.use('/results', resultsRouter)
+
+app.use('/notification', notificationsRouter)
 
 app.listen(process.env.PORT || 5000);

@@ -1,7 +1,7 @@
 @media only screen and (min-width: 576px) {
     .poster {
         transition: transform 0.25s ease;
-        z-index: 9999999999999;
+        z-index: 1000;
         position: relative;
     }
 
@@ -15,6 +15,11 @@
         position: relative;
     }
 
+}
+
+.modal-title,
+.modal-body {
+    color: black;
 }
 
 #icons {
@@ -99,7 +104,7 @@ footer img {
 @media only screen and (min-width: 992px) {
     .poster {
         transition: transform 0.25s ease;
-        z-index: 9999999999999;
+        z-index: 1000;
         position: relative;
     }
 

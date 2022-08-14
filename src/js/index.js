@@ -7,6 +7,44 @@ function init() {
     addPageControlEvents()
 }
 
+function changeModal(e) {
+    var titleMedia = $(e).parent().parent().find("h5")[0].innerText
+    var idMedia = $(e).parent().parent().parent().parent()[0].id.split("collapse")[1]
+    $("#mediaID")[0].value = idMedia
+    var type = $("#type")[0].value
+    $("#typeMedia")[0].value = type
+    switch ($("#language")[0].value) {
+        case 'es':
+            $("#exampleModalLabel")[0].innerText = `Notificación para \"${titleMedia}\"`
+            $("#email")[0].placeholder = 'Inserte su email'
+            break;
+        case 'en':
+            $("#exampleModalLabel")[0].innerText = `Notification for \"${titleMedia}\"`
+            $("#email")[0].placeholder = 'Insert your email'
+            break;
+        case 'de':
+            $("#exampleModalLabel")[0].innerText = `Benachrichtigung für \"${titleMedia}\"`
+            $("#email")[0].placeholder = 'Geben Sie Ihre E-Mail ein'
+            break;
+    }
+
+}
+
+function closeModal() {
+    $("[data-bs-dismiss='alert']")[0].click()
+    $("#email")[0].value = ''
+}
+
+function sendNotification() {
+    var email = $("#email")[0].value.trim()
+    var id = $("#mediaID")[0].value
+    var type = $("#typeMedia")[0].value
+    var language = $("#language")[0].value
+    $.post("/notification", { email: email, id: id, type: type, language: language }, function (result) {
+        $("#alerts")[0].innerHTML = result
+    });
+}
+
 function addPageControlEvents() {
     $("form .form-control").on('change', function () {
         $("#pageNumber")[0].value = 1
@@ -180,6 +218,11 @@ function changeLanguage(e) {
             $.each($(".freeText"), function (i, item) {
                 item.innerText = 'Gratis'
             })
+            $.each($(".btn-info"), function (i, item) {
+                item.innerText = '🔔 Avísame cuando esté disponible'
+            })
+            $("#closeModalButton")[0].innerText = 'Cerrar'
+            $("#saveModalButton")[0].innerText = 'Guardar'
             break;
         case 'en':
             separator = 1
@@ -222,6 +265,11 @@ function changeLanguage(e) {
             $.each($(".freeText"), function (i, item) {
                 item.innerText = 'Free'
             })
+            $.each($(".btn-info"), function (i, item) {
+                item.innerText = '🔔 Notify me when it\'s available'
+            })
+            $("#closeModalButton")[0].innerText = 'Close'
+            $("#saveModalButton")[0].innerText = 'Save'
             break;
         case 'de':
             separator = 2
@@ -265,6 +313,11 @@ function changeLanguage(e) {
             $.each($(".freeText"), function (i, item) {
                 item.innerText = 'Frei'
             })
+            $.each($(".btn-info"), function (i, item) {
+                item.innerText = '🔔 Benachrichtigen Sie mich, wenn es verfügbar ist'
+            })
+            $("#closeModalButton")[0].innerText = 'Schließen'
+            $("#saveModalButton")[0].innerText = 'Speichern'
             break;
     }
     $("#languages")[0].selectedIndex = separator
