@@ -24,15 +24,6 @@ mongoose.connect(process.env.MONGODB_SRV, {
 
 prepareNotifications()
 
-function ping() {
-    console.log("ping")
-    setTimeout(() => {
-        ping()
-    }, 20 * 60 * 1000);
-}
-
-ping()
-
 app.get('/', async (req, res) => {
     var genres = await getGenresByLanguage('es', 'movie') + await getGenresByLanguage('en', 'movie') + await getGenresByLanguage('de', 'movie')
     var parameters = { language: 'es', sort_by: 'popularity.desc' }
