@@ -166,9 +166,15 @@ async function prepareNotification(notification) {
 }
 
 function delayNotification(notification) {
+    var now = new Date()
     var dateLater = new Date()
-    dateLater.setDate(dateLater.getDate() + 1)
-    dateLater.setHours(0)
+    // 1 2 3 4 6 8 12 24
+    const hour = 8
+    if (now.getHours() % hour == 0) {
+        dateLater.setHours(dateLater.getHours() + hour)
+    } else {
+        dateLater.setHours(hour * (Math.ceil(dateLater.getHours() / hour)))
+    }
     dateLater.setMinutes(0)
     dateLater.setSeconds(0)
     dateLater.setMilliseconds(0)
