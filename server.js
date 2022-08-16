@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 var path = require('path');
 const resultsRouter = require('./routes/results')
 const notificationsRouter = require('./routes/notifications')
+const peopleRouter = require('./routes/people')
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
@@ -31,14 +32,14 @@ app.get('/', async (req, res) => {
     var datos = { language: 'es', sort_by: 'popularity.desc', type: 'movie', min_vote: 0, min_avg: 0, genres: genres }
     moviedb.discoverMovie(parameters)
         .then(async (resMovie) => {
-            await whereToWatch('es', 'movie', resMovie)
+            await whereToWatch('es', 'movie', resMovie.results)
             res.render('index', { resMovie: resMovie, datos: datos })
         })
         .catch(console.error)
     return
 });
 app.use('/results', resultsRouter)
-
+app.use('/people', peopleRouter)
 app.use('/notification', notificationsRouter)
 
 app.listen(process.env.PORT || 5000);

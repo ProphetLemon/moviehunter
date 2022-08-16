@@ -8,8 +8,30 @@ function init() {
     chargeProviders()
 }
 
-function chargeProviders() {
+function delay(callback, ms) {
+    var timer = 0;
+    return function () {
+        var context = this, args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            callback.apply(context, args);
+        }, ms || 0);
+    };
+}
 
+$("#people").change(function () {
+    $(this).blur()
+    var value = $(this).val();
+    $("[name='peopleID']").val($('#peopleList [value="' + value + '"]').data('value'))
+})
+
+$('#people').keyup(delay(function (e) {
+    $.post('/people', { query: $(this).val(), language: $("#language").val() }, function (response) {
+        $("#peopleList")[0].innerHTML = response
+    })
+}, 500));
+
+function chargeProviders() {
     var providers = $("#watchprovidersvalue").val()
     if (providers) {
         providers = providers.split("|")

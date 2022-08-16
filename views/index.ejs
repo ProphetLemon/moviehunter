@@ -97,7 +97,7 @@
                 </div>
                 <div class="form-group col-md-12 col-lg-3">
                     <label for="watchproviders">Plataforma</label>
-                    <select id="watchproviders" name="watchproviders" multiple class="form-select">
+                    <select id="watchproviders" name="watchproviders" size="4" multiple class="form-select">
                         <option value="">Indiferente</option>
                         <option value="8">Netflix</option>
                         <option value="119">Amazon Prime Video</option>
@@ -109,6 +109,17 @@
                     </select>
                     <input type="text" id="watchprovidersvalue" class="d-none" value="<%=datos.watchproviders%>">
                 </div>
+                <div class="form-group col-md-12 col-lg-3">
+                    <label for="people">Persona</label>
+                    <input type="text" list="peopleList" value="<%=datos.peopleName%>" name="peopleName"
+                        class="form-control" id="people" />
+                    <datalist id="peopleList">
+                        <option data-value="<%=datos.peopleID%>">
+                            <%=datos.peopleName%>
+                        </option>
+                    </datalist>
+                    <input name="peopleID" class="d-none" type="text">
+                </div>
             </div>
             <input type="submit" class="btn btn-success" value="Enviar" />
         </form>
@@ -118,109 +129,103 @@
             <div class=" border border-2 rounded p-3">
                 <h1 id="results">Resultados</h1>
                 <div class="accordion" id="accordionExample">
-                    <% resMovie.results.forEach(result=>{ %>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="heading<%=result.id %>">
-                                <button class="accordion-button dark collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapse<%=result.id %>" aria-expanded="false"
-                                    aria-controls="collapse<%=result.id %>">
-                                    <%=result.title?result.title:result.name%>
-                                        <%if(result.release_date||result.first_air_date){%>
-                                            (<%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>)
-                                                <%}%>
-                                                    <br>
-                                                    <%=result.vote_count%> -
-                                                        <%=result.vote_average%>⭐
-                                </button>
-                            </h2>
-                            <div id="collapse<%=result.id %>" class="accordion-collapse collapse"
-                                aria-labelledby="heading<%=result.id %>" data-bs-parent="#accordionExample">
-                                <div class="accordion-body dark">
-                                    <div class="row">
-                                        <div class="col-lg-9 col-md-6 mb-3 col-sm-7">
-                                            <h5>
-                                                <%=result.title?result.title:result.name%>
-                                            </h5>
-                                            <h6 class="genres_ids">
-                                                <%=result.genre_ids%>
-                                            </h6>
-                                            <%=result.overview%>
-                                                <%if(result.watchProviders){%>
-
-                                                    <h5 class="mt-2 whereText">Donde ver</h5>
-                                                    <%if(result.watchProviders &&result.watchProviders.flatrate ){%>
-                                                        <h6 class="suscriptionText">
-                                                            Suscripción</h6>
-                                                        <div class="row">
-                                                            <%result.watchProviders.flatrate.forEach(provider=>{%>
-                                                                <img class="watch-provider"
-                                                                    src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>">
-                                                                <%})%>
-                                                        </div>
-
-                                                        <%}%>
-                                                            <%if(result.watchProviders &&result.watchProviders.rent ){%>
-                                                                <h6 class="rentText">
-                                                                    Alquilar</h6>
-                                                                <div class="row">
-                                                                    <%result.watchProviders.rent.forEach(provider=>
-                                                                        {%>
-                                                                        <img class="watch-provider"
-                                                                            src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>" />
-                                                                        <%})%>
-                                                                </div>
-
-                                                                <%}%>
-                                                                    <%if(result.watchProviders
-                                                                        &&result.watchProviders.buy ){%>
-                                                                        <h6 class="buyText">
-                                                                            Comprar</h6>
-                                                                        <div class="row">
-                                                                            <%result.watchProviders.buy.forEach(provider=>
-                                                                                {%>
-                                                                                <img class="watch-provider"
-                                                                                    src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>" />
-                                                                                <%})%>
-                                                                        </div>
-
-                                                                        <%}%>
-
-                                                                            <%if(result.watchProviders
-                                                                                &&result.watchProviders.free ){%>
-                                                                                <h6 class="freeText">
-                                                                                    Gratis</h6>
-                                                                                <div class="row">
-                                                                                    <%result.watchProviders.free.forEach(provider=>
-                                                                                        {%>
-                                                                                        <img class="watch-provider"
-                                                                                            src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>" />
-                                                                                        <%})%>
-                                                                                </div>
-
-                                                                                <%}%>
-
-
+                    <%if(!resMovie.results){ resMovie.results=resMovie.cast }%>
+                        <% resMovie.results.forEach(result=>{ %>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading<%=result.id %>">
+                                    <button class="accordion-button dark collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapse<%=result.id %>"
+                                        aria-expanded="false" aria-controls="collapse<%=result.id %>">
+                                        <%=result.title?result.title:result.name%>
+                                            <%if(result.release_date||result.first_air_date){%>
+                                                (<%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>)
+                                                    <%}%>
+                                                        <br>
+                                                        <%=result.vote_count%> -
+                                                            <%=result.vote_average%>⭐
+                                    </button>
+                                </h2>
+                                <div id="collapse<%=result.id %>" class="accordion-collapse collapse"
+                                    aria-labelledby="heading<%=result.id %>" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body dark">
+                                        <div class="row">
+                                            <div class="col-lg-9 col-md-6 mb-3 col-sm-7">
+                                                <h5>
+                                                    <%=result.title?result.title:result.name%>
+                                                </h5>
+                                                <h6 class="genres_ids">
+                                                    <%=result.genre_ids%>
+                                                </h6>
+                                                <%=result.overview%>
+                                                    <%if(result.watchProviders){%>
+                                                        <h5 class="mt-2 whereText">Donde ver</h5>
+                                                        <%if(result.watchProviders &&result.watchProviders.flatrate ){%>
+                                                            <h6 class="suscriptionText">
+                                                                Suscripción</h6>
+                                                            <div class="row">
+                                                                <%result.watchProviders.flatrate.forEach(provider=>{%>
+                                                                    <img class="watch-provider"
+                                                                        src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>">
+                                                                    <%})%>
+                                                            </div>
+                                                            <%}%>
+                                                                <%if(result.watchProviders &&result.watchProviders.rent
+                                                                    ){%>
+                                                                    <h6 class="rentText">
+                                                                        Alquilar</h6>
+                                                                    <div class="row">
+                                                                        <%result.watchProviders.rent.forEach(provider=>
+                                                                            {%>
+                                                                            <img class="watch-provider"
+                                                                                src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>" />
+                                                                            <%})%>
+                                                                    </div>
+                                                                    <%}%>
+                                                                        <%if(result.watchProviders
+                                                                            &&result.watchProviders.buy ){%>
+                                                                            <h6 class="buyText">
+                                                                                Comprar</h6>
+                                                                            <div class="row">
+                                                                                <%result.watchProviders.buy.forEach(provider=>
+                                                                                    {%>
+                                                                                    <img class="watch-provider"
+                                                                                        src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>" />
+                                                                                    <%})%>
+                                                                            </div>
+                                                                            <%}%>
+                                                                                <%if(result.watchProviders
+                                                                                    &&result.watchProviders.free ){%>
+                                                                                    <h6 class="freeText">
+                                                                                        Gratis</h6>
+                                                                                    <div class="row">
+                                                                                        <%result.watchProviders.free.forEach(provider=>
+                                                                                            {%>
+                                                                                            <img class="watch-provider"
+                                                                                                src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>" />
+                                                                                            <%})%>
+                                                                                    </div>
                                                                                     <%}%>
+                                                                                        <%}%>
 
 
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-5">
-                                            <img class="poster img-thumbnail img-fluid rounded float-right"
-                                                src="https://image.tmdb.org/t/p/original<%=result.poster_path%>" />
-                                        </div>
-                                        <%if(!result.watchProviders || !result.watchProviders.flatrate){%>
-                                            <div class="col mt-3">
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal" onclick="changeModal(this)">
-                                                    🔔 Avísame cuando esté disponible
-                                                </button>
                                             </div>
-                                            <%}%>
+                                            <div class="col-lg-3 col-md-6 col-sm-5">
+                                                <img class="poster img-thumbnail img-fluid rounded float-right"
+                                                    src="https://image.tmdb.org/t/p/original<%=result.poster_path%>" />
+                                            </div>
+                                            <%if(!result.watchProviders || !result.watchProviders.flatrate){%>
+                                                <div class="col mt-3">
+                                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal" onclick="changeModal(this)">
+                                                        🔔 Avísame cuando esté disponible
+                                                    </button>
+                                                </div>
+                                                <%}%>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <% }) %>
+                            <% }) %>
                 </div>
             </div>
             <div class="row pageDiv mb-5 mt-3">
