@@ -19,6 +19,16 @@ router.post('/', async (req, res) => {
         parameters["with_genres"] = req.body.genre
         datos["genre"] = req.body.title ? '' : req.body.genre
     }
+    if (req.body.watchproviders && req.body.watchproviders != "" && !(Array.isArray(req.body.watchproviders) && req.body.watchproviders.includes(""))) {
+        parameters.watch_region = (parameters.language == 'en' ? 'us' : parameters.language).toUpperCase()
+        if (req.body.watchproviders == "idc" || req.body.watchproviders.includes("idc")) {
+            parameters.with_watch_monetization_types = 'flatrate'
+            datos.watchproviders = 'idc'
+        } else {
+            parameters.with_watch_providers = Array.isArray(req.body.watchproviders) ? req.body.watchproviders.join("|") : req.body.watchproviders
+            datos.watchproviders = parameters.with_watch_providers
+        }
+    }
     if (req.body.sort_by) {
         parameters["sort_by"] = req.body.sort_by
         datos["sort_by"] = req.body.title ? '' : req.body.sort_by
@@ -88,7 +98,6 @@ global.whereToWatch = async function (language, type, resMovie) {
     }
 
 }
-
 
 global.getGenresByLanguage = async function (language, type) {
     if (type == 'movie') {

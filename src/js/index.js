@@ -5,6 +5,27 @@ function init() {
     changeGenreNumberToText()
     checkPages()
     addPageControlEvents()
+    chargeProviders()
+}
+
+function chargeProviders() {
+    $.each($("#watchproviders option"), function (i, item) {
+        if ($(item)[0].label == 'Amazon Prime Video') {
+            $(item).val($("#language").val() == "es" ? 119 : 9)
+            return
+        }
+    })
+    var providers = $("#watchprovidersvalue").val()
+    if (providers) {
+        providers = providers.split("|")
+        for (let provider of providers) {
+            if (provider == "9" || provider == "119") {
+                provider = $("#language").val() == "es" ? 119 : 9
+                break
+            }
+        }
+        $("#watchproviders").val(providers)
+    }
 }
 
 function changeModal(e) {
@@ -174,7 +195,13 @@ function changeGenreNumberToText() {
 function changeLanguage(e) {
     if (e) {
         $("#language")[0].value = $("#languages")[0].value
-        $("[type='submit']")[0].click()
+        $.each($("#watchproviders option"), function (i, item) {
+            if ($(item)[0].label == 'Amazon Prime Video') {
+                $(item).val($("#language").val() == "es" ? 119 : 9)
+                return
+            }
+        })
+        $("form").submit()
         return
     }
     var separator = 0
@@ -223,6 +250,9 @@ function changeLanguage(e) {
             })
             $("#closeModalButton")[0].innerText = 'Cerrar'
             $("#saveModalButton")[0].innerText = 'Guardar'
+            $("[for=watchproviders]")[0].innerText = 'Plataforma'
+            $("#watchproviders option")[0].innerText = 'Indeferente'
+            $("#watchproviders option")[6].innerText = 'Cualquiera'
             break;
         case 'en':
             separator = 1
@@ -270,6 +300,9 @@ function changeLanguage(e) {
             })
             $("#closeModalButton")[0].innerText = 'Close'
             $("#saveModalButton")[0].innerText = 'Save'
+            $("[for=watchproviders]")[0].innerText = 'Provider'
+            $("#watchproviders option")[0].innerText = 'Indifferent'
+            $("#watchproviders option")[6].innerText = 'Whichever'
             break;
         case 'de':
             separator = 2
@@ -318,6 +351,9 @@ function changeLanguage(e) {
             })
             $("#closeModalButton")[0].innerText = 'Schließen'
             $("#saveModalButton")[0].innerText = 'Speichern'
+            $("[for=watchproviders]")[0].innerText = 'Anbieter'
+            $("#watchproviders option")[0].innerText = 'Gleichgültig'
+            $("#watchproviders option")[6].innerText = 'Alle'
             break;
     }
     $("#languages")[0].selectedIndex = separator
