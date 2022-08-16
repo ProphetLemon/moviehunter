@@ -37,9 +37,10 @@ router.post('/', async (req, res) => {
                 .catch(console.error)
         }
     } else if (req.body.peopleID) {
-        const response = await fetch(`https://api.themoviedb.org/3/person/${req.body.peopleID}/combined_credits?api_key=${process.env.MOVIEDB_API}&language=${req.body.language}`);
+        const response = await fetch(`https://api.themoviedb.org/3/person/${req.body.peopleID}/${datos.type}_credits?api_key=${process.env.MOVIEDB_API}&language=${req.body.language}`);
         const data = await response.json();
         data.cast = data.crew.concat(data.cast)
+        await whereToWatch(datos.language, datos.type, data.cast)
         datos.peopleName = req.body.peopleName
         datos.peopleID = req.body.peopleID
         res.render('index', { resMovie: data, datos: datos })
