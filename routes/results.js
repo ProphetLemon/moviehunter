@@ -27,6 +27,7 @@ router.post('/', async (req, res) => {
         } else {
             parameters.with_watch_providers = Array.isArray(req.body.watchproviders) ? req.body.watchproviders.join("|") : req.body.watchproviders
             datos.watchproviders = parameters.with_watch_providers
+            parameters.with_watch_providers = parameters.with_watch_providers.split("119").join("119|9")
         }
     }
     if (req.body.sort_by) {
