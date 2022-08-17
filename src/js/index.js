@@ -258,6 +258,7 @@ function changeLanguage(e) {
             $("[for=watchproviders]")[0].innerText = 'Plataforma'
             $("#watchproviders option")[0].innerText = 'Indeferente'
             $("#watchproviders option")[$("#watchproviders option").length - 1].innerText = 'Cualquiera'
+            $("[for=people]")[0].innerText = 'Persona'
             break;
         case 'en':
             separator = 1
@@ -308,6 +309,7 @@ function changeLanguage(e) {
             $("[for=watchproviders]")[0].innerText = 'Provider'
             $("#watchproviders option")[0].innerText = 'Indifferent'
             $("#watchproviders option")[$("#watchproviders option").length - 1].innerText = 'Whichever'
+            $("[for=people]")[0].innerText = 'Person'
             break;
         case 'de':
             separator = 2
@@ -359,6 +361,7 @@ function changeLanguage(e) {
             $("[for=watchproviders]")[0].innerText = 'Anbieter'
             $("#watchproviders option")[0].innerText = 'Gleichgültig'
             $("#watchproviders option")[$("#watchproviders option").length - 1].innerText = 'Alle'
+            $("[for=people]")[0].innerText = 'Person'
             break;
     }
     $("#languages")[0].selectedIndex = separator
