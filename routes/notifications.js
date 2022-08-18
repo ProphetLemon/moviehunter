@@ -235,7 +235,7 @@ function sendEmail(email, subject, text) {
 
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-            console.log(error + "\n" + process.env.EMAIL_ADRESS + "\n" + process.env.EMAIL_PASS + "\n" + process.env.EMAIL_SERVICE + "\n" + email + "\n" + subject + "\n" + text);
+            console.log(error);
         } else {
             console.log('Email sent: ' + info.response);
         }
