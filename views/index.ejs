@@ -169,12 +169,12 @@
                                                                     <%})%>
                                                             </div>
                                                             <%}%>
-                                                                <%if(result.watchProviders &&result.watchProviders.rent
+                                                                <%if(result.watchProviders &&result.watchProviders.free
                                                                     ){%>
-                                                                    <h6 class="rentText">
-                                                                        Alquilar</h6>
+                                                                    <h6 class="freeText">
+                                                                        Gratis</h6>
                                                                     <div class="row">
-                                                                        <%result.watchProviders.rent.forEach(provider=>
+                                                                        <%result.watchProviders.free.forEach(provider=>
                                                                             {%>
                                                                             <img class="watch-provider"
                                                                                 src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>" />
@@ -182,11 +182,11 @@
                                                                     </div>
                                                                     <%}%>
                                                                         <%if(result.watchProviders
-                                                                            &&result.watchProviders.buy ){%>
-                                                                            <h6 class="buyText">
-                                                                                Comprar</h6>
+                                                                            &&result.watchProviders.rent ){%>
+                                                                            <h6 class="rentText">
+                                                                                Alquilar</h6>
                                                                             <div class="row">
-                                                                                <%result.watchProviders.buy.forEach(provider=>
+                                                                                <%result.watchProviders.rent.forEach(provider=>
                                                                                     {%>
                                                                                     <img class="watch-provider"
                                                                                         src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>" />
@@ -194,11 +194,11 @@
                                                                             </div>
                                                                             <%}%>
                                                                                 <%if(result.watchProviders
-                                                                                    &&result.watchProviders.free ){%>
-                                                                                    <h6 class="freeText">
-                                                                                        Gratis</h6>
+                                                                                    &&result.watchProviders.buy ){%>
+                                                                                    <h6 class="buyText">
+                                                                                        Comprar</h6>
                                                                                     <div class="row">
-                                                                                        <%result.watchProviders.free.forEach(provider=>
+                                                                                        <%result.watchProviders.buy.forEach(provider=>
                                                                                             {%>
                                                                                             <img class="watch-provider"
                                                                                                 src="https://image.tmdb.org/t/p/original/<%=provider.logo_path%>" />
