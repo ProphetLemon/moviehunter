@@ -71,54 +71,71 @@
                         <%} %>
                 </div>
             </div>
-            <div class="row p-3 mt-2 mb-2">
-                <h2 id="filter">Filtros de busqueda</h2>
-                <div class="form-group col-md-12 col-lg-3">
-                    <label for="min_vote">Mínimo de votos</label>
-                    <input id="min_vote" name="min_vote" class="form-control" type="number"
-                        value="<%=datos.min_vote%>" />
-                </div>
-                <div class="form-group col-md-12 col-lg-3">
-                    <label for="min_avg">Valoración mínima</label>
-                    <input id="min_avg" min="0" max="10" name="min_avg" class="form-control" type="number"
-                        value="<%=datos.min_avg%>" />
-                </div>
-                <div class="form-group col-md-12 col-lg-3">
-                    <label for="sort_by">Ordenar por</label>
-                    <select id="sort_by" name="sort_by" class="form-select">
-                        <option value="popularity.desc"></option>
-                        <option value="release_date.desc"></option>
-                        <option value="vote_average.desc"></option>
-                        <option value="vote_count.desc"></option>
-                    </select>
-                    <% if (datos.sort_by){ %>
-                        <script>document.getElementById("sort_by").value = "<%=datos.sort_by %>"</script>
-                        <%} %>
-                </div>
-                <div class="form-group col-md-12 col-lg-3">
-                    <label for="watchproviders">Plataforma</label>
-                    <select id="watchproviders" name="watchproviders" size="4" multiple class="form-select">
-                        <option value="">Indiferente</option>
-                        <option value="8">Netflix</option>
-                        <option value="119">Amazon Prime Video</option>
-                        <option value="384">HBO Max</option>
-                        <option value="337">Disney Plus</option>
-                        <option value="350">Apple TV Plus</option>
-                        <option value="63">Filmin</option>
-                        <option value="idc">Cualquiera</option>
-                    </select>
-                    <input type="text" id="watchprovidersvalue" class="d-none" value="<%=datos.watchproviders%>">
-                </div>
-                <div class="form-group col-md-12 col-lg-3">
-                    <label for="people">Persona</label>
-                    <input type="text" list="peopleList" value="<%=datos.peopleName%>" name="peopleName"
-                        class="form-control" id="people" />
-                    <datalist id="peopleList">
-                        <option data-value="<%=datos.peopleID%>">
-                            <%=datos.peopleName%>
-                        </option>
-                    </datalist>
-                    <input name="peopleID" class="d-none" type="text">
+            <div class="accordion mb-2" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button dark" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                            style="padding:5px; padding-left: 10px;">
+                            <h4 id="filter">Filtros de busqueda</h4>
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body dark">
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-3">
+                                    <label for="min_vote">Mínimo de votos</label>
+                                    <input id="min_vote" name="min_vote" class="form-control" type="number"
+                                        value="<%=datos.min_vote%>" />
+                                </div>
+                                <div class="form-group col-md-12 col-lg-3">
+                                    <label for="min_avg">Valoración mínima</label>
+                                    <input id="min_avg" min="0" max="10" name="min_avg" class="form-control"
+                                        type="number" value="<%=datos.min_avg%>" />
+                                </div>
+                                <div class="form-group col-md-12 col-lg-3">
+                                    <label for="sort_by">Ordenar por</label>
+                                    <select id="sort_by" name="sort_by" class="form-select">
+                                        <option value="popularity.desc"></option>
+                                        <option value="release_date.desc"></option>
+                                        <option value="vote_average.desc"></option>
+                                        <option value="vote_count.desc"></option>
+                                    </select>
+                                    <% if (datos.sort_by){ %>
+                                        <script>document.getElementById("sort_by").value = "<%=datos.sort_by %>"</script>
+                                        <%} %>
+                                </div>
+                                <div class="form-group col-md-12 col-lg-3">
+                                    <label for="watchproviders">Plataforma</label>
+                                    <select id="watchproviders" name="watchproviders" size="4" multiple
+                                        class="form-select">
+                                        <option value="">Indiferente</option>
+                                        <option value="8">Netflix</option>
+                                        <option value="119">Amazon Prime Video</option>
+                                        <option value="384">HBO Max</option>
+                                        <option value="337">Disney Plus</option>
+                                        <option value="350">Apple TV Plus</option>
+                                        <option value="63">Filmin</option>
+                                        <option value="idc">Cualquiera</option>
+                                    </select>
+                                    <input type="text" id="watchprovidersvalue" class="d-none"
+                                        value="<%=datos.watchproviders%>">
+                                </div>
+                                <div class="form-group col-md-12 col-lg-3">
+                                    <label for="people">Persona</label>
+                                    <input type="text" list="peopleList" value="<%=datos.peopleName%>" name="peopleName"
+                                        class="form-control" id="people" />
+                                    <datalist id="peopleList">
+                                        <option data-value="<%=datos.peopleID%>">
+                                            <%=datos.peopleName%>
+                                        </option>
+                                    </datalist>
+                                    <input name="peopleID" class="d-none" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <input type="submit" class="btn btn-success" value="Enviar" />
@@ -138,7 +155,9 @@
                                         aria-expanded="false" aria-controls="collapse<%=result.id %>">
                                         <%=result.title?result.title:result.name%>
                                             <%if(result.release_date||result.first_air_date){%>
-                                                (<%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>)
+                                                (
+                                                <%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>
+                                                    )
                                                     <%}%>
                                                         <br>
                                                         <%=result.vote_count%> -
