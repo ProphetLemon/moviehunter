@@ -73,8 +73,8 @@ footer img {
 }
 
 @font-face {
-    font-family: AldotheApache;
-    src: url('/fonts/AldotheApache.ttf');
+    font-family: PunkKid;
+    src: url('/fonts/punk-kid.ttf');
 }
 
 .watch-provider {
@@ -82,7 +82,10 @@ footer img {
 }
 
 .titulo {
-    font-family: AldotheApache, sans-serif;
+    color: #FFCE00;
+    filter: drop-shadow(0 0 0.2rem rgb(0, 0, 0));
+    margin-top: 20px;
+    font-family: PunkKid, sans-serif;
     font-size: 6em;
     text-align: center;
 }
