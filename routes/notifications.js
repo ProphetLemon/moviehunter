@@ -227,7 +227,7 @@ function sendEmail(email, subject, text) {
     });
 
     var mailOptions = {
-        from: `Movie Finder 🎬 <${process.env.EMAIL_ADRESS}>`,
+        from: `Movie Hunter 🎬 <${process.env.EMAIL_ADRESS}>`,
         to: email,
         subject: subject,
         text: text
