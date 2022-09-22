@@ -38,6 +38,17 @@ app.get('/', async (req, res) => {
         .catch(console.error)
     return
 });
+
+app.get('/sitemap.xml', (req, res) => {
+    res.set('Content-Type', 'text/xml');
+    res.send(`<?xml version="1.0" encoding="utf-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url>
+        <loc>https://moviehunter.net/</loc>
+      </url>
+    </urlset>`);
+})
+
 app.use('/results', resultsRouter)
 app.use('/people', peopleRouter)
 app.use('/notification', notificationsRouter)
