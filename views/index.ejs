@@ -74,7 +74,7 @@
                         <%} %>
                 </div>
             </div>
-            <div class="accordion mb-2" id="accordionExample">
+            <div class="accordion mb-2" id="accordionFilters">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button dark" type="button" data-bs-toggle="collapse"
@@ -84,7 +84,7 @@
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                        data-bs-parent="#accordionExample">
+                        data-bs-parent="#accordionFilters">
                         <div class="accordion-body dark">
                             <div class="row">
                                 <div class="form-group col-md-12 col-lg-3">
@@ -148,7 +148,7 @@
         <div class="container  mt-2 mb-2">
             <div class=" border border-2 rounded p-3">
                 <h1 id="results">Resultados</h1>
-                <div class="accordion" id="accordionExample">
+                <div class="accordion" id="accordionResults">
                     <%if(!resMovie.results){ resMovie.results=resMovie.cast }%>
                         <% resMovie.results.forEach(result=>{ %>
                             <div class="accordion-item">
@@ -166,7 +166,7 @@
                                     </button>
                                 </h2>
                                 <div id="collapse<%=result.id %>" class="accordion-collapse collapse"
-                                    aria-labelledby="heading<%=result.id %>" data-bs-parent="#accordionExample">
+                                    aria-labelledby="heading<%=result.id %>" data-bs-parent="#accordionResults">
                                     <div class="accordion-body dark">
                                         <div class="row">
                                             <div class="col-lg-9 col-md-6 mb-3 col-sm-7">
