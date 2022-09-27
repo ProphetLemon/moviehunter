@@ -148,6 +148,8 @@ function changeColors(e) {
         $("#resultadosDiv").removeClass("light");
         $(".accordion").addClass("dark");
         $(".accordion").removeClass("light");
+        $(".accordion-item").addClass("dark");
+        $(".accordion-item").removeClass("light");
         $.each($(".accordion-button"), function (i, item) {
             $(item).addClass("dark")
             $(item).removeClass("light")
@@ -169,6 +171,8 @@ function changeColors(e) {
         $("#resultadosDiv").removeClass("dark");
         $(".accordion").addClass("light");
         $(".accordion").removeClass("dark");
+        $(".accordion-item").addClass("light");
+        $(".accordion-item").removeClass("dark");
         $.each($(".accordion-button"), function (i, item) {
             $(item).addClass("light")
             $(item).removeClass("dark")
