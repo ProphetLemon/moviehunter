@@ -186,6 +186,13 @@ footer img {
     }
 }
 
+#honorifics {
+    margin: auto;
+    max-width: fit-content;
+    padding: 2em;
+    background-color: #272121;
+}
+
 @media only screen and (min-width: 992px) {
     .poster {
         transition: transform 0.25s ease;

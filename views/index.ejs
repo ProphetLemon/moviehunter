@@ -158,7 +158,9 @@
                                         aria-expanded="false" aria-controls="collapse<%=result.id %>">
                                         <%=result.title?result.title:result.name%>
                                             <%if(result.release_date||result.first_air_date){%>
-                                                (<%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>)
+                                                (
+                                                <%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>
+                                                    )
                                                     <%}%>
                                                         <br>
                                                         <%=result.vote_count%> -
@@ -263,12 +265,18 @@
         </div>
         <% } %>
             <footer class="m-2">
-                <div class="mb-2 text-center"> <a target="_blank" href="https://twitter.com/profetalimon">
-                    Author: Diego Vidal del Rosal</a>
+                <div id="honorifics" class="mb-2 text-center border rounded"> <a target="_blank"
+                        href="https://twitter.com/profetalimon">
+                        Author:<br> Diego Vidal del Rosal</a>
                     <br>
-                    <a target="_blank"  href="https://twitter.com/mother__north">
-                    Collaborator: Aida González Alonso</a></div>
-
+                    <br>
+                    <a target="_blank" href="https://twitter.com/mother__north">
+                        Collaborators:<br> Aida González Alonso</a>
+                    <br>
+                    <a target="_blank" href="https://www.instagram.com/_keybunbun_">
+                        Ángel Vidal del Rosal</a>
+                </div>
+                <br><br>
                 <div id="donate-button-container" class="mb-3">
                     <div id="donate-button"></div>
                     <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
