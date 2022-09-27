@@ -6,6 +6,9 @@ function init() {
     checkPages()
     addPageControlEvents()
     chargeProviders()
+    if (document.getElementById("darkMode").checked == false) {
+        $("#darkModeButton").click()
+    }
 }
 
 function delay(callback, ms) {
@@ -139,6 +142,12 @@ function detectMobile() {
 function changeColors(e) {
     if (e.value == '🌙') {
         document.getElementById("darkMode").checked = true
+        $("#formBusqueda").addClass("dark");
+        $("#formBusqueda").removeClass("light");
+        $("#resultadosDiv").addClass("dark");
+        $("#resultadosDiv").removeClass("light");
+        $(".accordion").addClass("dark");
+        $(".accordion").removeClass("light");
         $.each($(".accordion-button"), function (i, item) {
             $(item).addClass("dark")
             $(item).removeClass("light")
@@ -154,6 +163,12 @@ function changeColors(e) {
         $(e).addClass("btn-warning")
     } else if (e.value == '☀') {
         document.getElementById("darkMode").checked = false
+        $("#formBusqueda").addClass("light");
+        $("#formBusqueda").removeClass("dark");
+        $("#resultadosDiv").addClass("light");
+        $("#resultadosDiv").removeClass("dark");
+        $(".accordion").addClass("light");
+        $(".accordion").removeClass("dark");
         $.each($(".accordion-button"), function (i, item) {
             $(item).addClass("light")
             $(item).removeClass("dark")
@@ -168,6 +183,7 @@ function changeColors(e) {
         $(e).removeClass("btn-warning")
         $(e).addClass("btn-dark")
     }
+    e.blur();
 }
 
 function changeGenreNumberToText() {
