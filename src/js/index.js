@@ -66,7 +66,9 @@ function changeModal(e) {
 }
 
 function closeModal() {
-    $("[data-bs-dismiss='alert']")[0].click()
+    if ($("[data-bs-dismiss='alert']")[0]) {
+        $("[data-bs-dismiss='alert']")[0].click()
+    }
     $("#email")[0].value = ''
 }
 
