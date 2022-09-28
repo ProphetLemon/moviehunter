@@ -6,8 +6,20 @@ function init() {
     checkPages()
     addPageControlEvents()
     chargeProviders()
+    downloadButton()
     if (document.getElementById("darkMode").checked == false) {
         $("#darkModeButton").click()
+    }
+}
+
+function downloadButton() {
+    window.detectAndroid = function () {
+        let check = false;
+        (function (a) { if (/(Version\/\d+.*\/\d+.0.0.0 Mobile|; ?wv|(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari))/i.test(navigator.userAgent)) check = true; })(navigator.userAgent || navigator.vendor || window.opera);
+        return check;
+    };
+    if (detectAndroid() == false && mobileCheck() == true) {
+        $("#divDownloadButton").append(`<a href = "/apk/moviehunter.apk" download = "Movie Hunter"> <button class="btn btn-primary"><i class="fa fa-download"></i>        Download APK</button></a>`)
     }
 }
 
@@ -148,6 +160,8 @@ function changeColors(e) {
         $("#formBusqueda").removeClass("light");
         $("#resultadosDiv").addClass("dark");
         $("#resultadosDiv").removeClass("light");
+        $("#honorifics").addClass("dark");
+        $("#honorifics").removeClass("light");
         $(".accordion").addClass("dark");
         $(".accordion").removeClass("light");
         $(".accordion-item").addClass("dark");
@@ -171,6 +185,8 @@ function changeColors(e) {
         $("#formBusqueda").removeClass("dark");
         $("#resultadosDiv").addClass("light");
         $("#resultadosDiv").removeClass("dark");
+        $("#honorifics").removeClass("dark");
+        $("#honorifics").addClass("light");
         $(".accordion").addClass("light");
         $(".accordion").removeClass("dark");
         $(".accordion-item").addClass("light");

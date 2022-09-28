@@ -190,7 +190,14 @@ footer img {
     margin: auto;
     max-width: fit-content;
     padding: 2em;
-    background-color: #272121;
+}
+
+#honorifics.dark {
+    background-color: #272121 !important;
+}
+
+#honorifics.light {
+    background-color: #d9d5d1 !important;
 }
 
 @media only screen and (min-width: 992px) {
