@@ -119,7 +119,11 @@ global.getGenresByLanguage = async function (language, type) {
     for (let i = 0; i < genres.length; i++) {
         final += `${genres[i].id}-${genres[i].name},`
     }
-    return final.substring(0, final.length - 1) + "COI"
+    final = final.substring(0, final.length - 1).split(",").sort(function (a, b) {
+        return a.split("-")[1] > b.split("-")[1] ? 1 : a.split("-")[1] < b.split("-")[1] ? -1 : 0
+    }).join(",")
+    console.log(final)
+    return final + "COI"
 }
 
 module.exports = router
