@@ -1,8 +1,8 @@
 init()
 function init() {
-    changeLanguage()
     detectMobile()
     changeGenreNumberToText()
+    changeLanguage()
     checkPages()
     addPageControlEvents()
     chargeProviders()
