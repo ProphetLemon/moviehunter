@@ -59,7 +59,8 @@
             <div class="row p-3">
                 <h2 id="basic_data">Datos básicos</h2>
                 <div class="form-group col-md-12 col-lg-4">
-                    <label for="title">Título</label>
+                    <label for="title" data-bs-toggle="tooltip"
+                        data-bs-title="Este filtro funciona independientemente de los demás filtros. Si rellena este campo, no se aplicarán los demás filtros (excepto el filtro 'Tipo').">Título&#42;</label>
                     <input id="title" name="title" class="form-control" type="text" value="<%=datos.title%>" />
                 </div>
                 <div class="form-group col-md-12 col-lg-4">

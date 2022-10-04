@@ -12,6 +12,11 @@ function init() {
     }
 }
 
+function loadTooltips() {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+}
+
 function downloadButton() {
     window.detectAndroid = function () {
         let check = false;
@@ -254,7 +259,8 @@ function changeLanguage(e) {
             separator = 0
             $("#basic_data")[0].innerText = 'Datos básicos'
             $("#filter")[0].innerText = 'Filtros de busqueda'
-            $("[for=title]")[0].innerText = 'Título'
+            $("[for=title]")[0].innerText = 'Título*'
+            $("[for=title]").attr("data-bs-title", "Este filtro funciona independientemente de los demás filtros. Si rellena este campo, no se aplicarán los demás filtros (excepto el filtro \"Tipo\").")
             $("[for=genre]")[0].innerText = 'Género'
             $("[for=min_vote]")[0].innerText = 'Mínimo de votos'
             $("[for=min_avg]")[0].innerText = 'Valoración mínima'
@@ -302,7 +308,8 @@ function changeLanguage(e) {
             separator = 1
             $("#basic_data")[0].innerText = 'Basic data'
             $("#filter")[0].innerText = 'Search filters'
-            $("[for=title]")[0].innerText = 'Title'
+            $("[for=title]")[0].innerText = 'Title*'
+            $("[for=title]").attr("data-bs-title", "This filter works independently from the other filters. If you fill in this field, the other filters (except for the \"Type\" filter) will not be applied...")
             $("[for=genre]")[0].innerText = 'Genre'
             $("[for=min_vote]")[0].innerText = 'Minimum votes'
             $("[for=min_avg]")[0].innerText = 'Minimum rate'
@@ -353,7 +360,8 @@ function changeLanguage(e) {
             separator = 2
             $("#basic_data")[0].innerText = 'Grundlegende Daten'
             $("#filter")[0].innerText = 'Suchfilter'
-            $("[for=title]")[0].innerText = 'Titel'
+            $("[for=title]")[0].innerText = 'Titel*'
+            $("[for=title]").attr("data-bs-title", "Dieser Filter arbeitet unabhängig von den anderen Filtern. Wenn Sie dieses Feld ausfüllen, werden die anderen Filter (mit Ausnahme des Filters \"Typ\") nicht angewendet.")
             $("[for=genre]")[0].innerText = 'Genre'
             $("[for=min_vote]")[0].innerText = 'Mindeststimmen'
             $("[for=min_avg]")[0].innerText = 'Mindestsatz'
@@ -418,5 +426,5 @@ function changeLanguage(e) {
         }
 
     })
-
+    loadTooltips()
 }

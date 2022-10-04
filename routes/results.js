@@ -122,7 +122,6 @@ global.getGenresByLanguage = async function (language, type) {
     final = final.substring(0, final.length - 1).split(",").sort(function (a, b) {
         return a.split("-")[1] > b.split("-")[1] ? 1 : a.split("-")[1] < b.split("-")[1] ? -1 : 0
     }).join(",")
-    console.log(final)
     return final + "COI"
 }
 
