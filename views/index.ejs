@@ -93,17 +93,17 @@
                         data-bs-parent="#accordionFilters">
                         <div class="accordion-body dark">
                             <div class="row">
-                                <div class="form-group col-md-12 col-lg-3">
+                                <div class="form-group col-md-12 col-lg-4">
                                     <label for="min_vote">Mínimo de votos</label>
                                     <input id="min_vote" name="min_vote" class="form-control" type="number"
                                         value="<%=datos.min_vote%>" />
                                 </div>
-                                <div class="form-group col-md-12 col-lg-3">
+                                <div class="form-group col-md-12 col-lg-4">
                                     <label for="min_avg">Valoración mínima</label>
                                     <input id="min_avg" min="0" max="10" name="min_avg" class="form-control"
                                         type="number" value="<%=datos.min_avg%>" />
                                 </div>
-                                <div class="form-group col-md-12 col-lg-3">
+                                <div class="form-group col-md-12 col-lg-4">
                                     <label for="sort_by">Ordenar por</label>
                                     <select id="sort_by" name="sort_by" class="form-select">
                                         <option value="popularity.desc"></option>
@@ -115,7 +115,10 @@
                                         <script>document.getElementById("sort_by").value = "<%=datos.sort_by %>"</script>
                                         <%} %>
                                 </div>
-                                <div class="form-group col-md-12 col-lg-3">
+
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-4">
                                     <label for="watchproviders">Plataforma</label>
                                     <select id="watchproviders" name="watchproviders" size="4" multiple
                                         class="form-select">
@@ -131,7 +134,7 @@
                                     <input type="text" id="watchprovidersvalue" class="d-none"
                                         value="<%=datos.watchproviders%>">
                                 </div>
-                                <div class="form-group col-md-12 col-lg-3">
+                                <div class="form-group col-md-12 col-lg-4">
                                     <label for="people">Persona</label>
                                     <input type="text" list="peopleList" value="<%=datos.peopleName%>" name="peopleName"
                                         class="form-control" id="people" />
@@ -141,6 +144,14 @@
                                         </option>
                                     </datalist>
                                     <input name="peopleID" class="d-none" type="text">
+                                </div>
+                                <div class="form-group col-md-12 col-lg-4">
+                                    <label for="excludegenre">Excluir Género</label>
+                                    <select id="excludegenre" name="excludegenre" class="form-select">
+                                        <option value="">Ninguno</option>
+                                    </select>
+                                    <input type="text" id="excludeGenreValue" value="<%=datos.excludegenre%>"
+                                        class="d-none" />
                                 </div>
                             </div>
                         </div>
@@ -164,7 +175,9 @@
                                         aria-expanded="false" aria-controls="collapse<%=result.id %>">
                                         <%=result.title?result.title:result.name%>
                                             <%if(result.release_date||result.first_air_date){%>
-                                                (<%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>)
+                                                (
+                                                <%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>
+                                                    )
                                                     <%}%>
                                                         <br>
                                                         <%=result.vote_count%> -

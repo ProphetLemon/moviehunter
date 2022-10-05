@@ -253,7 +253,6 @@ function changeLanguage(e) {
         return
     }
     var separator = 0
-    var genreValue = document.getElementById("genreValue").value
     switch ($("#language")[0].value) {
         case 'es':
             separator = 0
@@ -262,6 +261,7 @@ function changeLanguage(e) {
             $("[for=title]")[0].innerText = 'Título*'
             $("[for=title]").attr("data-bs-title", "Este filtro funciona independientemente de los demás filtros. Si rellena este campo, no se aplicarán los demás filtros (excepto el filtro \"Tipo\").")
             $("[for=genre]")[0].innerText = 'Género'
+            $("[for=excludegenre]")[0].innerText = 'Excluir Género'
             $("[for=min_vote]")[0].innerText = 'Mínimo de votos'
             $("[for=min_avg]")[0].innerText = 'Valoración mínima'
             $("[for=sort_by]")[0].innerText = 'Ordenar por'
@@ -311,6 +311,7 @@ function changeLanguage(e) {
             $("[for=title]")[0].innerText = 'Title*'
             $("[for=title]").attr("data-bs-title", "This filter works independently from the other filters. If you fill in this field, the other filters (except for the \"Type\" filter) will not be applied...")
             $("[for=genre]")[0].innerText = 'Genre'
+            $("[for=excludegenre]")[0].innerText = 'Exclude Genre'
             $("[for=min_vote]")[0].innerText = 'Minimum votes'
             $("[for=min_avg]")[0].innerText = 'Minimum rate'
             $("[for=sort_by]")[0].innerText = 'Sort by'
@@ -363,6 +364,7 @@ function changeLanguage(e) {
             $("[for=title]")[0].innerText = 'Titel*'
             $("[for=title]").attr("data-bs-title", "Dieser Filter arbeitet unabhängig von den anderen Filtern. Wenn Sie dieses Feld ausfüllen, werden die anderen Filter (mit Ausnahme des Filters \"Typ\") nicht angewendet.")
             $("[for=genre]")[0].innerText = 'Genre'
+            $("[for=excludegenre]")[0].innerText = 'Genre ausschließen'
             $("[for=min_vote]")[0].innerText = 'Mindeststimmen'
             $("[for=min_avg]")[0].innerText = 'Mindestsatz'
             $("[for=sort_by]")[0].innerText = 'Sortieren nach'
@@ -411,20 +413,27 @@ function changeLanguage(e) {
             break;
     }
     $("#languages")[0].selectedIndex = separator
+    var genreValue = document.getElementById("genreValue").value
+    chargeGenresSelect(separator, '#genre', genreValue)
+    var excludeGenreValue = document.getElementById("excludeGenreValue").value
+    chargeGenresSelect(separator, '#excludegenre', excludeGenreValue)
+    loadTooltips()
+}
+
+function chargeGenresSelect(separator, selectID, valueSelect) {
     $.each(document.getElementById("genres").value.split("COI")[separator].split(","), function (i, item) {
-        if (genreValue == item.split("-")[0]) {
-            $('#genre').append($('<option>', {
+        if (valueSelect == item.split("-")[0]) {
+            $(selectID).append($('<option>', {
                 value: item.split("-")[0],
                 text: item.split("-")[1],
                 selected: 'selected'
             }));
         } else {
-            $('#genre').append($('<option>', {
+            $(selectID).append($('<option>', {
                 value: item.split("-")[0],
                 text: item.split("-")[1]
             }));
         }
 
     })
-    loadTooltips()
 }

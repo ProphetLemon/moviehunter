@@ -60,6 +60,10 @@ router.post('/', async (req, res) => {
             parameters["with_genres"] = req.body.genre
             datos["genre"] = req.body.genre
         }
+        if (req.body.excludegenre) {
+            parameters["without_genres"] = req.body.excludegenre
+            datos["excludegenre"] = req.body.excludegenre
+        }
         if (req.body.sort_by) {
             parameters["sort_by"] = req.body.sort_by
             datos["sort_by"] = req.body.sort_by
