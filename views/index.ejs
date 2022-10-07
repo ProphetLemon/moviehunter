@@ -175,9 +175,7 @@
                                         aria-expanded="false" aria-controls="collapse<%=result.id %>">
                                         <%=result.title?result.title:result.name%>
                                             <%if(result.release_date||result.first_air_date){%>
-                                                (
-                                                <%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>
-                                                    )
+                                                (<%=(result.release_date?result.release_date:result.first_air_date).split("-")[0]%>)
                                                     <%}%>
                                                         <br>
                                                         <%=result.vote_count%> -
