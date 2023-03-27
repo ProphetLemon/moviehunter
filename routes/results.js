@@ -87,6 +87,9 @@ router.post('/', async (req, res) => {
             moviedb.discoverTv(parameters)
                 .then(async (resMovie) => {
                     await whereToWatch(datos.language, datos.type, resMovie.results)
+                    if (datos.original == 'on') {
+                        originalContent(resMovie)
+                    }
                     res.render('index', { resMovie: resMovie, datos: datos })
                 })
                 .catch(console.error)
