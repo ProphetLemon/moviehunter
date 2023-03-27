@@ -45,6 +45,7 @@ router.post('/', async (req, res) => {
         datos.peopleID = req.body.peopleID
         res.render('index', { resMovie: data, datos: datos })
     } else {
+        datos.original = req.body.original
         if (req.body.watchproviders && req.body.watchproviders != "" && !(Array.isArray(req.body.watchproviders) && req.body.watchproviders.includes(""))) {
             parameters.watch_region = (parameters.language == 'en' ? 'us' : parameters.language).toUpperCase()
             if (req.body.watchproviders == "idc" || req.body.watchproviders.includes("idc")) {
@@ -76,6 +77,9 @@ router.post('/', async (req, res) => {
             moviedb.discoverMovie(parameters)
                 .then(async (resMovie) => {
                     await whereToWatch(datos.language, datos.type, resMovie.results)
+                    if (datos.original == 'on') {
+                        originalContent(resMovie)
+                    }
                     res.render('index', { resMovie: resMovie, datos: datos })
                 })
                 .catch(console.error)
@@ -90,6 +94,47 @@ router.post('/', async (req, res) => {
     }
     return
 })
+
+
+function originalContent(resMovie) {
+    var contenidos = resMovie.results
+    for (let i = 0; i < contenidos.length; i++) {
+        let contenido = contenidos[i]
+        var original
+        if (!contenido.watchProviders || !contenido.watchProviders.flatrate) {
+            contenidos.splice(i, 1)
+            i--
+            continue;
+        } else {
+            original = contenido.watchProviders.flatrate[0].provider_name
+        }
+        if (contenido.watchProviders.flatrate.length > 1) {
+            trigger = true
+            for (let i = 1; i < contenido.watchProviders.flatrate.length && trigger == true; i++) {
+                let nameProvider = contenido.watchProviders.flatrate[i].provider_name
+                trigger = original.split(" ")[0] == nameProvider.split(" ")[0]
+            }
+            if (trigger == false) {
+                contenidos.splice(i, 1)
+                i--
+                continue;
+            }
+        }
+    }
+}
+
+
+function compareNames(name1, name2) {
+    for (word1 of name1.split(" ")) {
+        for (word2 of name2.split(" ")) {
+            if (word1 == word2) {
+                trigger = true
+                return true
+            }
+        }
+    }
+    return false
+}
 
 /**
  * 

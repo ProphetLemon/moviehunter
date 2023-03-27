@@ -155,6 +155,16 @@
                                         class="d-none" />
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-4">
+                                    <label for="original">Solo contenido propio</label>
+                                    <% if (datos.original=='on' ){ %>
+                                        <input type="checkbox" id="original" name="original" checked>
+                                        <%}else{%>
+                                            <input type="checkbox" id="original" name="original">
+                                            <%}%>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
