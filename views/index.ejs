@@ -132,6 +132,14 @@
                                         <option value="1773">SkyShowtime</option>
                                         <option value="idc">Cualquiera</option>
                                     </select>
+                                    <div class="form-group">
+                                        <label for="original">Solo contenido exclusivo</label>
+                                        <% if (datos.original=='on' ){ %>
+                                            <input type="checkbox" id="original" name="original" checked>
+                                            <%}else{%>
+                                                <input type="checkbox" id="original" name="original">
+                                                <%}%>
+                                    </div>
                                     <input type="text" id="watchprovidersvalue" class="d-none"
                                         value="<%=datos.watchproviders%>">
                                 </div>
@@ -153,16 +161,6 @@
                                     </select>
                                     <input type="text" id="excludeGenreValue" value="<%=datos.excludegenre%>"
                                         class="d-none" />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-12 col-lg-4">
-                                    <label for="original">Solo contenido exclusivo</label>
-                                    <% if (datos.original=='on' ){ %>
-                                        <input type="checkbox" id="original" name="original" checked>
-                                        <%}else{%>
-                                            <input type="checkbox" id="original" name="original">
-                                            <%}%>
                                 </div>
                             </div>
                         </div>
