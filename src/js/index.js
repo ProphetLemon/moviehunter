@@ -118,18 +118,20 @@ function resetPage() {
  * @param {Number} e 
  */
 function changePage(e) {
-    var actualPage = $("#pageNumber")[0].value
+    var actualPage = Number($("#pageNumber")[0].value)
     $("#pageNumber")[0].value = e == 0 ? --actualPage : ++actualPage
     $("form")[0].submit()
 }
 
 function checkPages() {
-    if ($("#pageNumber")[0].value == 1) {
+    var pageNumber = Number($("#pageNumber")[0].value)
+    var totalPages = Number($("#totalPages")[0].value)
+    if (pageNumber == 1) {
         $("#pageBefore").attr("disabled", "disabled")
         $("#pageBefore").removeClass("btn-primary")
         $("#pageBefore").addClass("btn-secondary")
     }
-    if ($("#pageNumber")[0].value >= $("#totalPages")[0].value) {
+    if (pageNumber >= totalPages) {
         $("#pageAfter").attr("disabled", "disabled")
         $("#pageAfter").removeClass("btn-primary")
         $("#pageAfter").addClass("btn-secondary")
