@@ -193,7 +193,7 @@ global.calcularDispersion = async function (type, resMovie) {
         if (!review.author_details.rating) continue;
         notas.push(review.author_details.rating);
       }
-      result.desviacion = Math.round(std(notas));
+      if (notas.length > 0) result.desviacion = std(notas, "uncorrected");
     }
   } else if (type == "tv") {
     for (result of resMovie) {
@@ -202,7 +202,7 @@ global.calcularDispersion = async function (type, resMovie) {
         if (!review.author_details.rating) continue;
         notas.push(review.author_details.rating);
       }
-      result.desviacion = Math.round(std(notas));
+      if (notas.length > 0) result.desviacion = std(notas, "uncorrected");
     }
   }
 };
