@@ -198,11 +198,13 @@ global.calcularDispersion = async function (type, resMovie) {
   } else if (type == "tv") {
     for (result of resMovie) {
       reviews = await moviedb.tvWatchProviders(result.id);
-      for (let review of reviews.results) {
-        if (!review.author_details.rating) continue;
-        notas.push(review.author_details.rating);
-      }
-      if (notas.length > 0) result.desviacion = std(notas, "uncorrected");
+      if (reviews.length){
+        for (let review of reviews.results) {
+          if (!review.author_details.rating) continue;
+          notas.push(review.author_details.rating);
+        }
+        if (notas.length > 0) result.desviacion = std(notas, "uncorrected");
+      }            
     }
   }
 };
