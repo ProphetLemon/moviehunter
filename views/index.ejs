@@ -51,15 +51,11 @@
       </div>
     </nav>
   </div>
-  <div class="container">
-  </div>
-  <div class="container">
-  </div>
-  <div class="container">
+  <div id="containerRelevantes" class="container">
     <h2>Peliculas destacadas</h2>
     <div id="carouselRelevante" class="carousel slide">
       <div class="carousel-inner">
-        <div class="carousel-item active">
+        <div id="<%=relevante[0].id%>" class="carousel-item active">
           <img src="https://image.tmdb.org/t/p/w1280<%=relevante[0].backdrop_path%>" class="d-block w-100" alt="..." />
           <div class="carousel-caption fondo-negro ">
             <h5><%=relevante[0].title%></h5>
@@ -67,7 +63,7 @@
         </div>
         <%for(let i = 1;i<relevante.length;i++){%>
         <%if (relevante[i].backdrop_path){%>
-        <div class="carousel-item">
+        <div id="<%=relevante[i].id%>" class="carousel-item">
           <img src="https://image.tmdb.org/t/p/w1280<%=relevante[i].backdrop_path%>" class="d-block w-100" alt="..." />
           <div class="carousel-caption fondo-negro ">
             <h5><%=relevante[i].title%></h5>
@@ -108,6 +104,10 @@
       </div>
     </div>
   </div>
+  <!--MODAL SPINNER-->
+  <%- include('_modal_spinner') %>
+  <!--MODAL DETAIL-->
+  <%- include('_modal_detail') %>
   <!--JQUERY-->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <!--MI JS-->

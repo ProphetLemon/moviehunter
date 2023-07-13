@@ -31,6 +31,18 @@ nav{
         font-family: Azonix, sans-serif;
 }
 
+.spinner-border{
+    position: fixed;
+    z-index: 1031;
+    top: 50%;
+    left: 50%;
+}
+
+#containerRelevantes{
+    border-bottom: 3px solid #d69340;
+    padding-bottom: 1rem;
+}
+
 .titulo{
     color:
         #d69340 !important;
@@ -46,6 +58,16 @@ h2{
     margin-top: 20px;
     font-family: Azonix, sans-serif;
     font-size: 6em;
+}
+
+.modal-content{
+    background-color: #001524 !important;
+    color:
+        #d69340 !important;
+}
+
+#detailModal{
+    backdrop-filter: blur(5px);    
 }
 
 body{

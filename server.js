@@ -30,5 +30,14 @@ app.get("/", async (req, res) => {
   res.render("index", { relevante: resMovie.results });
 });
 
+app.all("/favicon.ico", (req, res) => {
+  return;
+});
+
+app.post("/modal-info", async (req, res) => {
+  const resMovie = await moviedb.movieInfo({ id: req.body.id, language: "es" });
+  res.send(resMovie);
+});
+
 app.listen(process.env.PORT || 5000);
 console.log("Tamos ready");
