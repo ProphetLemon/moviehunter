@@ -10,6 +10,12 @@ function init() {
     if (document.getElementById("darkMode").checked == false) {
         $("#darkModeButton").click()
     }
+    $("#formBusqueda").on("submit", function (e) {
+        e.preventDefault()
+        $("#spinnerModal").modal('toggle');
+        $(this).unbind()
+        $(this).submit();
+    })
 }
 
 function loadTooltips() {
