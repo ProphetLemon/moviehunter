@@ -10,8 +10,8 @@ $("#spinnerModal").on("shown.bs.modal", function () {
     $("#detailModalLabel").text(result.title);
     $("#detailModal .modal-body")[0].innerHTML = `<table>
     <tr>
-    <td style="text-align:justify;">${result.overview}</td>
-    <td><img src="https://image.tmdb.org/t/p/w300${result.poster_path}" alt="..." /></td>
+    <td style="text-align:justify;padding:1em;">${result.overview}</td>
+    <td><a href="https://image.tmdb.org/t/p/original${result.poster_path}" target="_blank"><img src="https://image.tmdb.org/t/p/original${result.poster_path}" alt="..." /></a></td>
     </tr>
     </table>`;
     $("#spinnerModal").modal("hide");
