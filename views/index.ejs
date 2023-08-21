@@ -82,6 +82,38 @@
       </button>
     </div>
   </div>
+  <div id="containerAction" class="container">
+    <h2>Peliculas de Acción</h2>
+    <div id="carouselAction" class="carousel slide">
+      <div class="carousel-inner">
+        <div id="<%=action[0].id%>" class="carousel-item active">
+          <img src="https://image.tmdb.org/t/p/w1280<%=action[0].backdrop_path%>" class="d-block w-100" alt="..." />
+          <div class="carousel-caption fondo-negro ">
+            <h5><%=action[0].title%></h5>
+          </div>
+        </div>
+        <%for(let i = 1;i<action.length;i++){%>
+        <%if (action[i].backdrop_path){%>
+        <div id="<%=action[i].id%>" class="carousel-item">
+          <img src="https://image.tmdb.org/t/p/w1280<%=action[i].backdrop_path%>" class="d-block w-100" alt="..." />
+          <div class="carousel-caption fondo-negro ">
+            <h5><%=action[i].title%></h5>
+          </div>
+        </div>
+        <%}%>      
+        <%}%>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselAction" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselAction" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  
   <!---OFFCANVAS-->
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">

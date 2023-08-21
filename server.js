@@ -27,7 +27,9 @@ mongoose
 
 app.get("/", async (req, res) => {
   const resMovie = await moviedb.discoverMovie({ language: "es" });
-  res.render("index", { relevante: resMovie.results });
+  const resAction = await moviedb.discoverMovie({ language: "es", with_genres: 28 }); // 28 es el ID de género para las películas de acción
+  const resHorror = await moviedb.discoverMovie({ language: "es", with_genres: 27 }); // 27 es el ID de género para las películas de terror
+  res.render("index", { relevante: resMovie.results, action: resAction.results, horror: resHorror.results });
 });
 
 app.all("/favicon.ico", (req, res) => {

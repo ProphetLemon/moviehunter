@@ -4,7 +4,7 @@
 }
 
 @media screen and (min-width:576px) {
-    #carouselRelevante {
+    .carousel {
         max-width: 50%;
         margin: auto;
     }
