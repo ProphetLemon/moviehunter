@@ -1,3 +1,6 @@
+#Mis filtros
+.prettier*
+
 # Logs
 logs
 *.log

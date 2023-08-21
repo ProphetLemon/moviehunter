@@ -17,6 +17,12 @@
 
 }
 
+body {
+    font-family: 'Fira Code Retina', monospace;
+    
+}
+
+
 .modal-title,
 .modal-body {
     color: black;
@@ -159,6 +165,11 @@ footer img {
     src: url('/fonts/Azonix.otf');
 }
 
+@font-face {
+    font-family: FiraCode;
+    src: url('/fonts/FiraCode-Retina.ttf');
+}
+
 .watch-provider {
     width: 4em;
 }
@@ -219,6 +230,9 @@ footer img {
 
 }
 
+.genres_ids{
+    text-align: left;
+}
 
 div {
     text-align: justify;
