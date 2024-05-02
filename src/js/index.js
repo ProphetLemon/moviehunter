@@ -245,6 +245,7 @@ function changeLanguage(e) {
   const lang = $("#language").val();
   const texts = {
     es: {
+      submit_button: "Enviar",
       users_vote_same: "Los usuarios suelen votar con la misma nota",
       notify_me: "🔔 Avísame cuando esté disponible",
       basic_data: "Datos básicos",
@@ -269,6 +270,7 @@ function changeLanguage(e) {
       options_generic: ["Indeferente", "Cualquiera", "Ninguno"],
     },
     en: {
+      submit_button: "Submit",
       users_vote_same: "Benutzer stimmen oft mit derselben Bewertung ab",
       users_vote_same: "Users often vote with the same rating",
       notify_me: "🔔 Notify me when available",
@@ -293,6 +295,7 @@ function changeLanguage(e) {
       options_generic: ["Indifferent", "Whichever", "None"],
     },
     de: {
+      submit_button: "Senden",
       notify_me: "🔔 Benachrichtigen Sie mich, wenn verfügbar",
       basic_data: "Grundlegende Daten",
       filter: "Suchfilter",
@@ -333,6 +336,7 @@ function changeLanguage(e) {
   $("#saveModalButton").text(t.modal_buttons.save);
   $("[for=watchproviders]").text(t.watchproviders);
   $("[for=people]").text(t.people);
+  $(".submitFormulario").val(t.submit_button);
   $("#watchproviders").find("option").first().text(t.watchproviders_text[0]);
   $("#watchproviders").find("option").last().text(t.watchproviders_text[1]);
   $(".accordion-body").find("span").text(t.users_vote_same);
