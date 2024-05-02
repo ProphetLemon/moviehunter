@@ -35,10 +35,14 @@ body {
   color: #534d4a !important;
 }
 
+#formBusquedaDiv.light,
 #formBusqueda.light {
-  margin-top: 10px;
   background-color: #e5e1df !important;
   box-shadow: rgba(50, 50, 93, 0.301) 0px 2px 5px -1px, rgba(0, 0, 0, 0.301) 0px 1px 3px -1px;
+}
+
+#accordionFilters.light {
+  background-color: #e5e1df !important;
 }
 
 button.light {
@@ -76,8 +80,12 @@ button.light {
   color: #f3efec !important;
 }
 
+#accordionFilters.dark {
+  background-color: #282326 !important;
+}
+
+#formBusquedaDiv.dark,
 #formBusqueda.dark {
-  margin-top: 10px;
   background-color: #282326 !important;
   box-shadow: rgba(50, 50, 93, 0.301) 0px 2px 5px -1px, rgba(0, 0, 0, 0.301) 0px 1px 3px -1px;
 }
