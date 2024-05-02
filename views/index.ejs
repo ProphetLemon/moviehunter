@@ -74,11 +74,7 @@
                 <option value="movie">Películas</option>
                 <option value="tv">Series</option>
               </select>
-              <% if (datos.type){ %>
-              <script>
-                document.getElementById("type").value = "<%=datos.type %>";
-              </script>
-              <%} %>
+              <input type="text" class="d-none" id="typevalue" value="<%=datos.type?datos.type:'movie'%>" />
             </div>
           </div>
           <div class="accordion mb-3 mt-3 dark" id="accordionFilters">

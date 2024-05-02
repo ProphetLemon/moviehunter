@@ -6,16 +6,10 @@ function init() {
   checkPages();
   addPageControlEvents();
   chargeProviders();
-  downloadButton();
   if (document.getElementById("darkMode").checked == false) {
     $("#darkModeButton").click();
   }
-  $("#formBusqueda").on("submit", function (e) {
-    e.preventDefault();
-    $("#spinnerModal").modal("toggle");
-    $(this).unbind();
-    $(this).submit();
-  });
+  $("#type").val($("#typevalue").val()).change();
 }
 
 function loadTooltips() {
@@ -140,10 +134,12 @@ function changeType(e) {
   var valor = e.value;
   $("#formBusqueda input").not('[type="hidden"]').not(".d-none").val("");
   $("#type").val(valor);
+  $("#spinnerModal").modal("toggle");
   $("#formBusqueda").submit();
 }
 
 function enviarFormulario() {
+  $("#spinnerModal").modal("toggle");
   $("#formBusqueda").submit();
 }
 
@@ -224,6 +220,7 @@ function changeGenreNumberToText() {
 
 function changeLanguage(e) {
   if (e) {
+    $("#spinnerModal").modal("toggle");
     $("#language").val($("#languages").val());
     $("form").submit();
     return;
