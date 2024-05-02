@@ -23,19 +23,6 @@ function loadTooltips() {
   const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
 }
 
-function downloadButton() {
-  window.detectAndroid = function () {
-    let check = false;
-    (function (a) {
-      if (/(Version\/\d+.*\/\d+.0.0.0 Mobile|; ?wv|(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari))/i.test(navigator.userAgent)) check = true;
-    })(navigator.userAgent || navigator.vendor || window.opera);
-    return check;
-  };
-  if (detectAndroid() == false && mobileCheck() == true) {
-    $("#divDownloadButton").append(`<a href = "/apk/moviehunter.apk" download = "Movie Hunter"> <button class="btn btn-primary"><i class="fa fa-download"></i>        Download APK</button></a>`);
-  }
-}
-
 function delay(callback, ms) {
   var timer = 0;
   return function () {
