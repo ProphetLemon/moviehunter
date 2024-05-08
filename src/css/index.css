@@ -176,6 +176,11 @@ footer img {
   width: 4em;
 }
 
+.desviado,
+.concentrado {
+  color: yellow;
+}
+
 .titulo {
   color: #d69340;
   margin-top: 20px;

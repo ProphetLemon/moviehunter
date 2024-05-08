@@ -180,9 +180,9 @@
                     <%=result.overview%>
                     <br />
                     <%if(result.desviacion<2){%>
-                    <span style="color: yellow">Los usuarios suelen votar con la misma nota</span>
+                    <span class="concentrado">Los usuarios suelen votar con la misma nota</span>
                     <%}else if(result.desviacion>=3){%>
-                    <span style="color: yellow">Las votaciones de los usuarios son muy dispares entre si</span>
+                    <span class="desviado">Las votaciones de los usuarios son muy dispares entre si</span>
                     <%}%> <%if(result.watchProviders){%>
                     <h5 class="mt-2 whereText">Donde ver</h5>
                     <%if(result.watchProviders &&result.watchProviders.flatrate ){%>

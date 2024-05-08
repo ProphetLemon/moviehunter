@@ -252,6 +252,12 @@ function changeLanguage(e) {
       people: "Persona",
       options_generic: ["Indeferente", "Cualquiera", "Ninguno"],
       results: "Resultados",
+      desviacion: ["Los usuarios suelen votar con la misma nota", "Las votaciones de los usuarios son muy dispares entre si"],
+      where_to_whatch: "Dónde ver",
+      rent: "Alquilar",
+      buy: "Comprar",
+      free: "Gratis",
+      subscription: "Suscripción",
     },
     en: {
       submit_button: "Submit",
@@ -278,6 +284,12 @@ function changeLanguage(e) {
       people: "Person",
       options_generic: ["Indifferent", "Whichever", "None"],
       results: "Results",
+      desviacion: ["Users often vote with the same score.", "User votes are very disparate among each other."],
+      where_to_whatch: "Where to Watch",
+      rent: "Rent",
+      buy: "Buy",
+      free: "Free",
+      subscription: "Subscription",
     },
     de: {
       submit_button: "Senden",
@@ -303,6 +315,12 @@ function changeLanguage(e) {
       people: "Person",
       options_generic: ["Gleichgültig", "Alle", "Keiner"],
       results: "Ergebnisse",
+      desviacion: ["Die Benutzer stimmen oft mit derselben Note ab.", "Die Abstimmungen der Benutzer sind sehr unterschiedlich."],
+      where_to_whatch: "Wo anzusehen",
+      rent: "Mieten",
+      buy: "Kaufen",
+      free: "Kostenlos",
+      subscription: "Abonnement",
     },
   };
 
@@ -330,6 +348,13 @@ function changeLanguage(e) {
   $("#excludegenre").find("option").first().text(t.options_generic[2]);
   $(".accordion-body").find("button").text(t.notify_me);
   $("#results").text(t.results);
+  $(".concentrado").text(t.desviacion[0]);
+  $(".desviado").text(t.desviacion[1]);
+  $(".whereText").text(t.where_to_whatch);
+  $(".buyText").text(t.buy);
+  $(".rentText").text(t.rent);
+  $(".freeText").text(t.free);
+  $(".suscriptionText").text(t.subscription);
   updateSelectOptions("#sort_by", t.sort_by, t.sort_by_text, t.sort_by_values);
   updateSelectOptions("#type", t.type, t.type_text, t.type_values);
 
