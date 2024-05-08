@@ -354,7 +354,10 @@ function changeLanguage(e) {
   $(".buyText").text(t.buy);
   $(".rentText").text(t.rent);
   $(".freeText").text(t.free);
+<<<<<<< HEAD
   $(".suscriptionText").text(t.subscription);
+=======
+>>>>>>> a5f71db8a5c5e32eead195855f0a42c030065334
   updateSelectOptions("#sort_by", t.sort_by, t.sort_by_text, t.sort_by_values);
   updateSelectOptions("#type", t.type, t.type_text, t.type_values);
 
