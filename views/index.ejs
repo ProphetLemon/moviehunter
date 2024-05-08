@@ -220,6 +220,8 @@
                   </div>
                   <%if(!result.watchProviders || !result.watchProviders.flatrate){%>
                   <div class="col mt-3">
+                    <input type="text" class="d-none idOculto" disabled value="<%=result.id%>" />
+                    <input type="text" class="d-none nombreOculto" disabled value="<%=result.title?result.title:result.name%>" />
                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="changeModal(this)">🔔 Avísame cuando esté disponible</button>
                   </div>
                   <%}%>

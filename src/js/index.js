@@ -9,7 +9,6 @@ function init() {
   if (document.getElementById("darkMode").checked == false) {
     $("#darkModeButton").click();
   }
-  $("#type").val($("#typevalue").val()).change();
 }
 
 function loadTooltips() {
@@ -52,8 +51,8 @@ function chargeProviders() {
 }
 
 function changeModal(e) {
-  var titleMedia = $(e).parent().parent().find("h5")[0].innerText;
-  var idMedia = $(e).parent().parent().parent().parent()[0].id.split("collapse")[1];
+  var titleMedia = $(e).parent().find(".nombreOculto").val();
+  var idMedia = $(e).parent().find(".idOculto").val();
   $("#mediaID")[0].value = idMedia;
   var type = $("#type")[0].value;
   $("#typeMedia")[0].value = type;
@@ -252,6 +251,7 @@ function changeLanguage(e) {
       watchproviders_text: ["Indeferente", "Cualquiera"],
       people: "Persona",
       options_generic: ["Indeferente", "Cualquiera", "Ninguno"],
+      results: "Resultados",
     },
     en: {
       submit_button: "Submit",
@@ -277,6 +277,7 @@ function changeLanguage(e) {
       watchproviders_text: ["Indifferent", "Whichever"],
       people: "Person",
       options_generic: ["Indifferent", "Whichever", "None"],
+      results: "Results",
     },
     de: {
       submit_button: "Senden",
@@ -301,6 +302,7 @@ function changeLanguage(e) {
       watchproviders_text: ["Gleichgültig", "Alle"],
       people: "Person",
       options_generic: ["Gleichgültig", "Alle", "Keiner"],
+      results: "Ergebnisse",
     },
   };
 
@@ -327,6 +329,7 @@ function changeLanguage(e) {
   $("#genre").find("option").first().text(t.options_generic[1]);
   $("#excludegenre").find("option").first().text(t.options_generic[2]);
   $(".accordion-body").find("button").text(t.notify_me);
+  $("#results").text(t.results);
   updateSelectOptions("#sort_by", t.sort_by, t.sort_by_text, t.sort_by_values);
   updateSelectOptions("#type", t.type, t.type_text, t.type_values);
 
