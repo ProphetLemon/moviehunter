@@ -9,6 +9,7 @@ function init() {
   if (document.getElementById("darkMode").checked == false) {
     $("#darkModeButton").click();
   }
+  $("#type").val($("#typevalue").val());
 }
 
 function loadTooltips() {
