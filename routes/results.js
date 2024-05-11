@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { MovieDb } = require("moviedb-promise");
 const moviedb = new MovieDb(process.env.MOVIEDB_API);
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 router.get("/", (req, res) => {
   res.redirect("/");
@@ -22,10 +21,7 @@ router.post("/", async (req, res) => {
     darkMode: req.body.darkMode ? req.body.darkMode : "off",
   };
   var parameters = { language: req.body.language, page: req.body.pageNumber };
-  var genres =
-    (await getGenresByLanguage("es", datos["type"])) +
-    (await getGenresByLanguage("en", datos["type"])) +
-    (await getGenresByLanguage("de", datos["type"]));
+  var genres = (await getGenresByLanguage("es", datos["type"])) + (await getGenresByLanguage("en", datos["type"])) + (await getGenresByLanguage("de", datos["type"]));
   genres = genres.substring(0, genres.length - 3);
   datos["genres"] = genres;
   if (req.body.title) {
@@ -49,9 +45,7 @@ router.post("/", async (req, res) => {
         .catch(console.error);
     }
   } else if (req.body.peopleID) {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/person/${req.body.peopleID}/${datos.type}_credits?api_key=${process.env.MOVIEDB_API}&language=${req.body.language}`
-    );
+    const response = await fetch(`https://api.themoviedb.org/3/person/${req.body.peopleID}/${datos.type}_credits?api_key=${process.env.MOVIEDB_API}&language=${req.body.language}`);
     const data = await response.json();
     data.cast = data.crew.concat(data.cast);
     await whereToWatch(datos.language, datos.type, data.cast);
@@ -60,31 +54,15 @@ router.post("/", async (req, res) => {
     res.render("index", { resMovie: data, datos: datos });
   } else {
     datos.original = req.body.original;
-    if (
-      req.body.watchproviders &&
-      req.body.watchproviders != "" &&
-      !(
-        Array.isArray(req.body.watchproviders) &&
-        req.body.watchproviders.includes("")
-      )
-    ) {
-      parameters.watch_region = (
-        parameters.language == "en" ? "us" : parameters.language
-      ).toUpperCase();
-      if (
-        req.body.watchproviders == "idc" ||
-        req.body.watchproviders.includes("idc")
-      ) {
+    if (req.body.watchproviders && req.body.watchproviders != "" && !(Array.isArray(req.body.watchproviders) && req.body.watchproviders.includes(""))) {
+      parameters.watch_region = (parameters.language == "en" ? "us" : parameters.language).toUpperCase();
+      if (req.body.watchproviders == "idc" || req.body.watchproviders.includes("idc")) {
         parameters.with_watch_monetization_types = "flatrate";
         datos.watchproviders = "idc";
       } else {
-        parameters.with_watch_providers = Array.isArray(req.body.watchproviders)
-          ? req.body.watchproviders.join("|")
-          : req.body.watchproviders;
+        parameters.with_watch_providers = Array.isArray(req.body.watchproviders) ? req.body.watchproviders.join("|") : req.body.watchproviders;
         datos.watchproviders = parameters.with_watch_providers;
-        parameters.with_watch_providers = parameters.with_watch_providers
-          .split("119")
-          .join("119|9");
+        parameters.with_watch_providers = parameters.with_watch_providers.split("119").join("119|9");
       }
     }
     if (req.body.genre) {
@@ -100,17 +78,9 @@ router.post("/", async (req, res) => {
       datos["sort_by"] = req.body.sort_by;
     }
     parameters["vote_count.gte"] = req.body.min_vote ? req.body.min_vote : 0;
-    datos["min_vote"] = req.body.title
-      ? 0
-      : req.body.min_vote
-      ? req.body.min_vote
-      : 0;
+    datos["min_vote"] = req.body.title ? 0 : req.body.min_vote ? req.body.min_vote : 0;
     parameters["vote_average.gte"] = req.body.min_avg ? req.body.min_avg : 0;
-    datos["min_avg"] = req.body.title
-      ? 0
-      : req.body.min_avg
-      ? req.body.min_avg
-      : 0;
+    datos["min_avg"] = req.body.title ? 0 : req.body.min_avg ? req.body.min_avg : 0;
     if (datos["type"] == "movie") {
       moviedb
         .discoverMovie(parameters)
@@ -154,11 +124,7 @@ function originalContent(resMovie) {
     }
     if (contenido.watchProviders.flatrate.length > 1) {
       trigger = true;
-      for (
-        let i = 1;
-        i < contenido.watchProviders.flatrate.length && trigger == true;
-        i++
-      ) {
+      for (let i = 1; i < contenido.watchProviders.flatrate.length && trigger == true; i++) {
         let nameProvider = contenido.watchProviders.flatrate[i].provider_name;
         trigger = original.split(" ")[0] == nameProvider.split(" ")[0];
       }
@@ -198,13 +164,13 @@ global.calcularDispersion = async function (type, resMovie) {
   } else if (type == "tv") {
     for (result of resMovie) {
       reviews = await moviedb.tvWatchProviders(result.id);
-      if (reviews.length){
+      if (reviews.length) {
         for (let review of reviews.results) {
           if (!review.author_details.rating) continue;
           notas.push(review.author_details.rating);
         }
         if (notas.length > 0) result.desviacion = std(notas, "uncorrected");
-      }            
+      }
     }
   }
 };
@@ -232,13 +198,9 @@ global.whereToWatch = async function (language, type, resMovie) {
 
 global.getGenresByLanguage = async function (language, type) {
   if (type == "movie") {
-    var genres = await (
-      await moviedb.genreMovieList({ language: language })
-    ).genres;
+    var genres = await (await moviedb.genreMovieList({ language: language })).genres;
   } else if (type == "tv") {
-    var genres = await (
-      await moviedb.genreTvList({ language: language })
-    ).genres;
+    var genres = await (await moviedb.genreTvList({ language: language })).genres;
   }
   var final = "";
   for (let i = 0; i < genres.length; i++) {
@@ -248,11 +210,7 @@ global.getGenresByLanguage = async function (language, type) {
     .substring(0, final.length - 1)
     .split(",")
     .sort(function (a, b) {
-      return a.split("-")[1] > b.split("-")[1]
-        ? 1
-        : a.split("-")[1] < b.split("-")[1]
-        ? -1
-        : 0;
+      return a.split("-")[1] > b.split("-")[1] ? 1 : a.split("-")[1] < b.split("-")[1] ? -1 : 0;
     })
     .join(",");
   return final + "COI";

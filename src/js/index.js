@@ -10,6 +10,10 @@ function init() {
     $("#darkModeButton").click();
   }
   $("#type").val($("#typevalue").val());
+  if ($("#type").val() == "tv") {
+    $("#sort_by").find("option[value='primary_release_date.desc']").val("first_air_date.desc");
+  }
+  $("#sort_by").val($("#sort_by_value").val());
 }
 
 function loadTooltips() {
@@ -247,7 +251,7 @@ function changeLanguage(e) {
       watchproviders: "Plataforma",
       sort_by: "Ordenar por",
       sort_by_text: ["Popularidad", "Fecha Lanzamiento", "Nota media", "Número de votos"],
-      sort_by_values: ["popularity", "release_date", "rating", "votes"],
+      sort_by_values: ["popularity.desc", "primary_release_date.desc", "vote_average.desc", "vote_count.desc"],
       watchproviders: "Plataforma",
       watchproviders_text: ["Indeferente", "Cualquiera"],
       people: "Persona",
@@ -279,7 +283,7 @@ function changeLanguage(e) {
       modal_buttons: { close: "Close", save: "Save" },
       sort_by: "Sort by",
       sort_by_text: ["Popularity", "Release date", "Average rate", "Number of votes"],
-      sort_by_values: ["popularity", "release_date", "rating", "votes"],
+      sort_by_values: ["popularity.desc", "primary_release_date.desc", "vote_average.desc", "vote_count.desc"],
       watchproviders: "Provider",
       watchproviders_text: ["Indifferent", "Whichever"],
       people: "Person",
@@ -310,7 +314,7 @@ function changeLanguage(e) {
       modal_buttons: { close: "Schließen", save: "Speichern" },
       sort_by: "Sortieren nach",
       sort_by_text: ["Popularität", "Veröffentlichungsdatum", "Durchschnittsnote", "Anzahl Stimmen"],
-      sort_by_values: ["popularity", "release_date", "rating", "votes"],
+      sort_by_values: ["popularity.desc", "primary_release_date.desc", "vote_average.desc", "vote_count.desc"],
       watchproviders: "Anbieter",
       watchproviders_text: ["Gleichgültig", "Alle"],
       people: "Person",
