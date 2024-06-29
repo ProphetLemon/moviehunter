@@ -172,7 +172,7 @@ function changeColors(e) {
   if ($(e).find("i").attr("class").includes("moon")) {
     document.getElementById("darkMode").checked = true;
     $(".light").each(function () {
-      $(this).removeClass("dark").addClass("dark"); // Remover 'dark' y añadir 'light'
+      $(this).removeClass("light").addClass("dark"); // Remover 'dark' y añadir 'light'
     });
     $(e).find("i").attr("class", "fa fa-sun-o");
     $(e).removeClass("btn-dark");
